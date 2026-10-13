@@ -166,5 +166,143 @@
     "name": "ヤマト運輸",
     "color": "#004020",
     "site_key": "rw_VIe7ZXjOe4GkbXrSxMHJCS34"
+  },
+  {
+    "slug": "rakuten-mobile",
+    "name": "楽天モバイル",
+    "color": "#BF0000",
+    "site_key": "rw_eY79Y4W8lagtPo4U2L8NEetP"
+  },
+  {
+    "slug": "rakuten-car",
+    "name": "楽天カー",
+    "color": "#BF0000",
+    "site_key": "rw_JsvoeJBsTHQtIPaT8PCcU7Ch"
+  },
+  {
+    "slug": "biglobe",
+    "name": "BIGLOBE",
+    "color": "#142572",
+    "site_key": "rw_k2F012k0Y0E52HhGg71h0B1C"
+  },
+  {
+    "slug": "aplus",
+    "name": "アプラス",
+    "color": "#142572",
+    "site_key": "rw_j7D08bCBflMDJST2BqjHjY27"
+  },
+  {
+    "slug": "tobutoptours",
+    "name": "東武トップツアーズ",
+    "color": "#142572",
+    "site_key": "rw_CdXL2CrQHGMNmqnblInAaFlE"
+  },
+  {
+    "slug": "mizuho",
+    "name": "みずほ銀行",
+    "color": "#002C8C",
+    "site_key": "rw_wMZM15Mia7071SQ7E8diDY2U"
+  },
+  {
+    "slug": "daiei",
+    "name": "ダイエー",
+    "color": "#142572",
+    "site_key": "rw_63CD2QDnzw3CYTcWiQTYcXIg"
+  },
+  {
+    "slug": "adastria",
+    "name": "アダストリア",
+    "color": "#142572",
+    "site_key": "rw_rGaN57U5O6JdZ87Zev68SEgT"
+  },
+  {
+    "slug": "hotpepper",
+    "name": "ホットペッパーグルメ",
+    "color": "#C8102E",
+    "site_key": "rw_pGXgQ2iVzGnTIEPNpwFAzup5"
+  },
+  {
+    "slug": "mynavi",
+    "name": "マイナビ",
+    "color": "#142572",
+    "site_key": "rw_iZf3kCcC9GOYTV5aTyznrxo6"
+  },
+  {
+    "slug": "vitabrid",
+    "name": "ビタブリッドジャパン",
+    "color": "#142572",
+    "site_key": "rw_yYMEqDEtlVV8qQA8VSU0JVUU"
+  },
+  {
+    "slug": "base",
+    "name": "BASE",
+    "color": "#142572",
+    "site_key": "rw_93a6xgJGZ3NetfIahU4ot1d0"
+  },
+  {
+    "slug": "newt",
+    "name": "NEWT（令和トラベル）",
+    "color": "#142572",
+    "site_key": "rw_cwXza4hMue7zeipQSDrhixQJ"
+  },
+  {
+    "slug": "alphatheta",
+    "name": "AlphaTheta",
+    "color": "#000000",
+    "site_key": "rw_2cFxOaMBEKapgsZQcUdmG7GB"
+  },
+  {
+    "slug": "fujisan",
+    "name": "富士山マガジンサービス",
+    "color": "#142572",
+    "site_key": "rw_muREO2tK6MbyOtsk5NgeSgSL"
+  },
+  {
+    "slug": "fishing-v",
+    "name": "釣りビジョン",
+    "color": "#142572",
+    "site_key": "rw_dR6fpdCkreXVAxXmkHtBZ2iM"
+  },
+  {
+    "slug": "wantedly",
+    "name": "ウォンテッドリー",
+    "color": "#21BDDB",
+    "site_key": "rw_Uw37FKPLXJ6EnT4FwSEbbVeZ"
+  },
+  {
+    "slug": "housefoods",
+    "name": "ハウス食品",
+    "color": "#E60012",
+    "site_key": "rw_PNr1mc369nVbatMZ55QfVn2C"
+  },
+  {
+    "slug": "bizreach",
+    "name": "ビズリーチ",
+    "color": "#142572",
+    "site_key": "rw_YxLPxTEgphXeomthqMLAxhwR"
+  },
+  {
+    "slug": "sodastream",
+    "name": "ソーダストリーム",
+    "color": "#142572",
+    "site_key": "rw_QHAGXPjR4QKpmdKPPp0rnLIn"
+  },
+  {
+    "slug": "note",
+    "name": "note",
+    "color": "#000000",
+    "site_key": "rw_xZgx6nZqQt5XbHxDA4XbBSOr"
+  },
+  {
+    "slug": "diptyque",
+    "name": "Diptyque",
+    "color": "#000000",
+    "site_key": "rw_6C89j5SrMJf67jEoROCTHHZY"
+  },
+  {
+    "slug": "omron-healthcare",
+    "name": "オムロン ヘルスケア",
+    "color": "#005EB8",
+    "site_key": "rw_DlAtsIqWR8XvW2i8BpAmTSWC"
   }
 ]
