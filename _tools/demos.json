@@ -304,5 +304,29 @@
     "name": "オムロン ヘルスケア",
     "color": "#005EB8",
     "site_key": "rw_DlAtsIqWR8XvW2i8BpAmTSWC"
+  },
+  {
+    "slug": "canon-its",
+    "name": "キヤノンITソリューションズ",
+    "color": "#CC0000",
+    "site_key": "rw_05JF1xsoW4qDWZNhAg5KUmsC"
+  },
+  {
+    "slug": "omron-social",
+    "name": "オムロン ソーシアルソリューションズ",
+    "color": "#005EB8",
+    "site_key": "rw_I5tejkjctc2H61wfLUVTwrwZ"
+  },
+  {
+    "slug": "orix",
+    "name": "オリックス",
+    "color": "#F39800",
+    "site_key": "rw_2NtfWRW5R1M8dhOthmLP6kzA"
+  },
+  {
+    "slug": "mizuho-tb",
+    "name": "みずほ信託銀行",
+    "color": "#002C8C",
+    "site_key": "rw_a20vyefh7uoGcTkMvj5JSTgF"
   }
 ]
