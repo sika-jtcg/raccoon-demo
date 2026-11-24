@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Raccoon AI｜パートナー様向けご紹介資料</title>
+<link rel="icon" type="image/svg+xml" href="assets/raccoon-icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#142572; --blue:#3557D6; --sky:#6B96EC; --pale:#EEF2FF; --line:#DCE3F5;
+  --ink:#1B2240; --sub:#5A6385; --amber:#F2A516; --green:#16A34A; --red:#E5484D; --purple:#6D4AFF;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#E9ECF5;overflow:hidden;font-family:"Noto Sans JP","Noto Sans",sans-serif;color:var(--ink)}
+#stage{position:absolute;width:1600px;height:900px;left:50%;top:50%;transform-origin:center center}
+.slide{position:absolute;inset:0;background:#fff;overflow:hidden;opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s}
+.slide.active{opacity:1;visibility:visible}
+/* decorative background */
+.slide::before{content:"";position:absolute;right:-220px;top:-260px;width:720px;height:720px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(107,150,236,.22),rgba(107,150,236,0) 70%);pointer-events:none;animation:floaty 12s ease-in-out infinite}
+.slide::after{content:"";position:absolute;left:-180px;bottom:-260px;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(109,74,255,.10),rgba(109,74,255,0) 70%);pointer-events:none;animation:floaty 14s ease-in-out infinite reverse}
+@keyframes floaty{50%{transform:translate(30px,40px) scale(1.06)}}
+.pad{position:absolute;inset:0;padding:64px 88px}
+.brandbar{position:absolute;right:56px;top:40px;height:30px;opacity:.95}
+.foot{position:absolute;left:88px;bottom:30px;font-size:14px;color:#98A0BC;letter-spacing:.04em}
+.pg{position:absolute;right:56px;bottom:30px;font-size:14px;color:#98A0BC;font-family:"Noto Sans"}
+.kicker{display:inline-block;font-size:18px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:12px}
+h1.t{font-size:48px;font-weight:900;line-height:1.3;color:var(--navy);letter-spacing:.01em}
+h1.t em{font-style:normal;color:var(--blue)}
+.lead{font-size:22px;color:var(--sub);margin-top:14px;line-height:1.7}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 22px;border-radius:999px;border:2px solid var(--blue);color:var(--blue);font-weight:700;font-size:18px;background:#fff}
+.pill.fill{background:var(--blue);color:#fff}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(20,37,114,.08)}
+.big{font-family:"Noto Sans";font-weight:900;color:var(--blue);line-height:1}
+.hl{color:var(--blue);font-weight:900}
+.amber{color:var(--amber)}
+.summary{position:absolute;left:88px;right:88px;bottom:70px;background:var(--navy);color:#fff;border-radius:14px;padding:18px 28px;font-size:21px;font-weight:700;display:flex;gap:14px;align-items:center}
+.summary b{color:#FFD36B}
+
+/* ===== reveal animations ===== */
+.a{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.a.l{transform:translateX(-40px)} .a.r{transform:translateX(40px)} .a.z{transform:scale(.85)}
+.slide.active .a{opacity:1;transform:none}
+.slide.active .d1{transition-delay:.15s}.slide.active .d2{transition-delay:.3s}.slide.active .d3{transition-delay:.45s}
+.slide.active .d4{transition-delay:.6s}.slide.active .d5{transition-delay:.75s}.slide.active .d6{transition-delay:.9s}
+.slide.active .d7{transition-delay:1.05s}.slide.active .d8{transition-delay:1.2s}.slide.active .d9{transition-delay:1.35s}
+.slide.active .d10{transition-delay:1.5s}.slide.active .d11{transition-delay:1.65s}.slide.active .d12{transition-delay:1.8s}
+/* sequence items (chat etc.) are revealed by JS */
+.seq>*{opacity:0;transform:translateY(14px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.seq>.on{opacity:1;transform:none}
+.typing{display:inline-flex;gap:5px;padding:12px 16px;background:#EEF1F8;border-radius:14px}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9AA3C0;animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{50%{opacity:.25;transform:translateY(-3px)}}
+.pulse{animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(53,87,214,.45)}70%{box-shadow:0 0 0 16px rgba(53,87,214,0)}100%{box-shadow:0 0 0 0 rgba(53,87,214,0)}}
+.bar{height:12px;border-radius:99px;background:#E7EBF6;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--blue));transition:width 1.4s var(--ease)}
+.draw{stroke-dasharray:var(--len,1200);stroke-dashoffset:var(--len,1200);transition:stroke-dashoffset 2s var(--ease)}
+.slide.active .draw{stroke-dashoffset:0}
+
+/* ===== chat app mock ===== */
+.app{position:absolute;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 24px 60px rgba(20,37,114,.18);border:1px solid #D9DEEE;display:flex;flex-direction:column}
+.app .top{height:38px;display:flex;align-items:center;gap:8px;padding:0 14px;font-size:13px;color:#fff}
+.app .top .dot{width:11px;height:11px;border-radius:50%;background:#FF5F57}.app .top .dot:nth-child(2){background:#FEBC2E}.app .top .dot:nth-child(3){background:#28C840}
+.app .body{flex:1;display:flex;min-height:0}
+.app .side{width:190px;padding:14px 10px;font-size:13px;color:#E8E3F3;display:flex;flex-direction:column;gap:5px}
+.app .side .ch{padding:5px 10px;border-radius:6px;opacity:.85}
+.app .side .ch.sel{background:rgba(255,255,255,.18);opacity:1;font-weight:700}
+.app .side .h{font-size:11px;opacity:.6;margin-top:10px;padding-left:10px}
+.app .main{flex:1;display:flex;flex-direction:column;min-width:0}
+.app .chead{height:46px;border-bottom:1px solid #EEF0F6;display:flex;align-items:center;padding:0 18px;font-weight:700;font-size:15px;gap:10px}
+.app .msgs{flex:1;padding:14px 18px;display:flex;flex-direction:column;gap:12px;overflow:hidden;font-size:13.5px;line-height:1.6}
+.msg{display:flex;gap:10px}
+.msg .av{width:34px;height:34px;border-radius:8px;flex:none;display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px;background:#E2A35B}
+.msg .av.bot{background:var(--navy)} .msg .av.bot img{width:24px}
+.msg .nm{font-weight:700;font-size:13.5px}.msg .nm small{font-weight:400;color:#98A0BC;margin-left:6px}
+.msg .nm .app-tag{font-size:10px;background:#E9ECF5;color:#5A6385;padding:1px 5px;border-radius:4px;margin-left:5px;font-weight:700}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin-top:6px;background:#F7F8FC;border:1px solid #EAEDF6;border-radius:10px;padding:10px 14px}
+.kv b{font-weight:700}
+.btns{display:flex;gap:8px;margin-top:10px}
+.btn{padding:6px 16px;border-radius:7px;border:1px solid #CFD5E6;font-weight:700;font-size:13px;background:#fff}
+.btn.ok{background:#2E7D4F;color:#fff;border-color:#2E7D4F}
+.btn.pp{background:#611F69;color:#fff;border-color:#611F69}
+.click{animation:clickfx .6s ease 1}
+@keyframes clickfx{40%{transform:scale(.92);filter:brightness(1.2)}}
+.ok-banner{margin-top:8px;background:#E7F6EC;border:1px solid #BFE5CC;color:#1F6B3A;border-radius:8px;padding:8px 12px;font-weight:700}
+table.mini{border-collapse:collapse;width:100%;font-size:12.5px;margin-top:6px}
+table.mini th,table.mini td{border-bottom:1px solid #EEF0F6;padding:5px 6px;text-align:left}
+table.mini th{color:#5A6385;font-weight:700;background:#F7F8FC}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;font-size:11px;font-weight:700}
+.tag.g{background:#E2F5E9;color:#1E7A43}.tag.b{background:#E5ECFF;color:#3557D6}.tag.o{background:#FFF1DB;color:#B26A00}
+
+/* ===== phone / widget mock ===== */
+.phone{position:absolute;width:360px;border-radius:26px;background:#fff;border:1px solid #D9DEEE;box-shadow:0 24px 60px rgba(20,37,114,.18);overflow:hidden;display:flex;flex-direction:column}
+.phone .ph{background:linear-gradient(90deg,var(--navy),var(--blue));color:#fff;padding:14px 16px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px}
+.phone .ph img{width:28px;height:28px;background:#fff;border-radius:50%;padding:3px}
+.phone .ph small{display:block;font-weight:400;font-size:11px;opacity:.8}
+.phone .pm{flex:1;padding:14px;display:flex;flex-direction:column;gap:10px;font-size:13.5px;line-height:1.6;background:#F7F8FC}
+.b-user{align-self:flex-end;background:var(--blue);color:#fff;padding:9px 14px;border-radius:16px 16px 4px 16px;max-width:80%}
+.b-ai{align-self:flex-start;background:#fff;border:1px solid #E3E7F2;padding:9px 14px;border-radius:16px 16px 16px 4px;max-width:88%}
+.b-ai .lbl{font-size:11px;color:var(--blue);font-weight:700;display:block;margin-bottom:2px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--blue);color:var(--blue);border-radius:99px;padding:4px 12px;font-size:12.5px;background:#fff;font-weight:500}
+.phone .pi{border-top:1px solid #E3E7F2;padding:10px 14px;font-size:13px;color:#A4ABC5;background:#fff}
+.prod{display:flex;gap:8px}
+.prod .pc{flex:1;border:1px solid #E3E7F2;border-radius:10px;background:#fff;overflow:hidden;font-size:12px}
+.prod .pc .im{height:70px;background:linear-gradient(135deg,#DDE5FB,#F3E9FF);display:grid;place-items:center;font-size:30px}
+.prod .pc .tx{padding:6px 8px}.prod .pc b{display:block;font-size:12px}
+
+/* ===== slide-specific ===== */
+.cover{background:linear-gradient(135deg,#fff 0%,#F2F5FF 55%,#E6ECFF 100%)}
+.cover .logo{width:700px}
+.cover .tag1{font-size:40px;font-weight:900;color:var(--navy);letter-spacing:.06em;margin-top:36px}
+.cover .tag2{margin-top:36px;display:inline-flex;gap:24px;align-items:center;padding:16px 48px;border-radius:999px;background:var(--navy);color:#fff;font-size:26px;font-weight:700}
+.blob{position:absolute;border-radius:50%;filter:blur(2px)}
+
+.stat3{display:flex;gap:64px;margin-top:40px}
+.stat3 .n{font-size:84px}
+.stat3 .n small{font-size:30px;margin-left:4px}
+.stat3 .c{font-size:18px;color:var(--sub);margin-top:10px;line-height:1.6}
+
+.prodrow{display:flex;gap:20px;align-items:flex-start;padding:20px 24px}
+.prodrow .ic{width:60px;height:60px;border-radius:16px;background:var(--pale);display:grid;place-items:center;flex:none}
+.prodrow h3{font-size:26px;color:var(--navy);font-weight:900}
+.prodrow p{font-size:17px;color:var(--sub);margin-top:4px;line-height:1.6}
+
+/* platform diagram */
+.pf{position:absolute;left:88px;right:88px;top:210px;display:grid;grid-template-columns:170px 1fr 300px;grid-template-rows:auto auto auto;gap:14px}
+.pf .lab{background:var(--navy);color:#fff;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:900;font-size:18px;padding:10px;gap:4px}
+.pf .lab small{font-weight:400;font-size:12px;opacity:.8}
+.pf .grp{border:1px solid var(--line);border-radius:14px;background:#F8FAFF;padding:12px 14px}
+.pf .grp h4{font-size:15px;color:var(--navy);margin-bottom:8px;display:flex;justify-content:space-between}
+.pf .grp h4 small{font-weight:400;color:var(--sub);font-size:12px}
+.pf .cells{display:grid;gap:8px}
+.pf .cell{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px;font-weight:700;color:var(--ink)}
+.pf .cell small{display:block;font-weight:400;font-size:11.5px;color:var(--sub);margin-top:2px}
+.pf .cell.more{color:#9AA3C0;border-style:dashed;text-align:center;display:grid;place-items:center}
+
+/* world/time chart */
+.tl{position:relative;height:6px;background:#D8DEF0;border-radius:99px}
+.tl .seg{position:absolute;top:-10px;height:26px;border-radius:99px;color:#fff;font-size:14px;font-weight:700;display:grid;place-items:center;transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
+.slide.active .tl .seg{transform:scaleX(1)}
+
+/* pains */
+.pain{display:grid;grid-template-columns:1fr 70px;gap:6px 18px;align-items:center;margin-bottom:22px}
+.pain .lb{font-size:20px;font-weight:700}
+.pain .pc{font-family:"Noto Sans";font-weight:900;color:var(--blue);font-size:22px;text-align:right}
+.pain .bar{grid-column:1/3}
+
+/* features */
+.feat{display:grid;grid-template-columns:72px 1fr;gap:16px;margin-bottom:26px}
+.feat .no{width:64px;height:64px;border-radius:50%;background:var(--blue);color:#fff;font-family:"Noto Sans";font-weight:900;font-size:24px;display:grid;place-items:center}
+.feat h3{font-size:26px;color:var(--navy);font-weight:900;margin-bottom:8px}
+.feat ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 30px;font-size:16.5px;color:var(--sub)}
+.feat li::before{content:"●";color:var(--sky);font-size:10px;margin-right:8px;vertical-align:middle}
+
+/* flow builder */
+.fnode{position:absolute;background:#fff;border:1.5px solid #B9C3E0;border-radius:6px;font-size:11px;padding:4px 7px;color:#5A6385;white-space:nowrap}
+.dark .fnode{background:#25304F;border-color:#3D4A72;color:#C8D0EA}
+
+/* dashboard */
+.kpi{padding:16px 18px}
+.kpi .v{font-family:"Noto Sans";font-weight:900;font-size:34px;color:var(--navy)}
+.kpi .k{font-size:13px;color:var(--sub);margin-top:4px}
+
+/* pricing */
+table.price{border-collapse:separate;border-spacing:0 6px;width:100%;font-size:17px}
+table.price th{font-size:22px;color:#fff;background:var(--navy);padding:12px;border-radius:12px 12px 0 0}
+table.price th.lh{background:none}
+table.price td{background:#F5F7FD;padding:10px 14px;text-align:center}
+table.price td:first-child{text-align:left;font-weight:700;color:var(--navy);background:#E9EEFB;border-radius:8px 0 0 8px}
+table.price td:last-child{border-radius:0 8px 8px 0}
+table.price tr.disc td{background:#FFF6E1;color:#9A5A00;font-weight:900;font-size:20px}
+table.price tr.disc td:first-child{background:#FFE9B8}
+table.price .strike{color:#9AA3C0;text-decoration:line-through}
+.ck{color:var(--green);font-weight:900;font-size:20px}.x{color:#C2C7D6;font-weight:900}
+
+/* onboarding */
+.stg{position:absolute;top:250px;height:560px}
+.stg .hd{background:var(--navy);color:#fff;border-radius:12px;padding:10px;text-align:center;font-weight:900;font-family:"Noto Sans";font-size:20px}
+.stg .hd small{display:block;font-weight:500;font-size:13px;opacity:.8;font-family:"Noto Sans JP"}
+.stg .bd{margin-top:14px;padding:20px;min-height:300px;font-size:18px;line-height:1.7;color:var(--sub)}
+.stg .bd b{display:block;color:var(--navy);font-size:20px;margin-bottom:6px}
+
+/* nav */
+#nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:10px;align-items:center;background:rgba(20,37,114,.88);color:#fff;border-radius:99px;padding:6px 10px;font-size:13px;z-index:10;opacity:.25;transition:opacity .3s}
+#nav:hover{opacity:1}
+#nav button{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;width:30px;height:30px;border-radius:50%}
+#nav button:hover{background:rgba(255,255,255,.15)}
+#prog{position:fixed;left:0;top:0;height:4px;background:linear-gradient(90deg,var(--sky),var(--blue));z-index:10;transition:width .4s var(--ease)}
+.grid-overview #stage{display:none}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="stage">
+
+<!-- 1 表紙 -->
+<section class="slide cover">
+  <div class="pad" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <img class="logo a z" src="assets/raccoon-logo.svg" alt="Raccoon AI">
+    <div class="tag1 a d2">すべての会話を、ビジネスチャンスに。</div>
+    <div class="tag2 a d4"><span>顧客体験を高める</span><span style="opacity:.5">●</span><span>成約を加速する</span></div>
+    <div class="a d6" style="margin-top:40px;font-size:18px;color:var(--sub)">パートナー様向けご紹介資料</div>
+  </div>
+</section>
+
+<!-- 2 会社概要 -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">COMPANY</div>
+    <h1 class="t a d1">会話型 AI ソリューション <em>Raccoon AI</em></h1>
+    <div class="lead a d2">すべての会話を、ビジネスチャンスに。</div>
+    <div class="stat3">
+      <div class="a d3"><div class="big n"><span data-count="6">0</span><small>市場</small></div><div class="c">台湾・日本・シンガポール<br>タイ・韓国・香港</div></div>
+      <div class="a d4"><div class="big n"><span data-count="1500" data-sep>0</span><small>+社</small></div><div class="c">導入ブランド数</div></div>
+      <div class="a d5"><div class="big n"><span data-count="80">0</span><small>%</small></div><div class="c">AI 解決率</div></div>
+    </div>
+    <svg class="a d4" viewBox="0 0 640 360" style="position:absolute;left:88px;top:470px;width:640px;height:340px">
+      <rect x="0" y="0" width="640" height="340" rx="22" fill="#F3F6FF" stroke="#DCE3F5"/>
+      <g fill="#D6DEF5"><circle cx="120" cy="80" r="3"/></g>
+      <path d="M330 210 Q 380 120 420 95" class="draw" stroke="#3557D6" stroke-width="2.5" fill="none" style="--len:200"/>
+      <path d="M330 210 Q 430 150 470 145" class="draw" stroke="#3557D6" stroke-width="2.5" fill="none" style="--len:200"/>
+      <path d="M330 210 Q 260 210 230 240" class="draw" stroke="#3557D6" stroke-width="2.5" fill="none" style="--len:200"/>
+      <path d="M330 210 Q 300 270 270 305" class="draw" stroke="#3557D6" stroke-width="2.5" fill="none" style="--len:200"/>
+      <path d="M330 210 Q 360 230 380 228" class="draw" stroke="#3557D6" stroke-width="2.5" fill="none" style="--len:100"/>
+      <g font-family="Noto Sans JP" font-size="15" font-weight="700" fill="#142572">
+        <circle cx="330" cy="210" r="9" fill="#142572"><animate attributeName="r" values="9;13;9" dur="2s" repeatCount="indefinite"/></circle>
+        <rect x="282" y="222" width="96" height="30" rx="15" fill="#fff" stroke="#142572"/><text x="330" y="242" text-anchor="middle">台湾 本社</text>
+        <circle cx="420" cy="95" r="7" fill="#F2A516"/><rect x="390" y="56" width="64" height="28" rx="14" fill="#fff" stroke="#DCE3F5"/><text x="422" y="75" text-anchor="middle">韓国</text>
+        <circle cx="470" cy="145" r="7" fill="#F2A516"/><rect x="482" y="130" width="64" height="28" rx="14" fill="#fff" stroke="#3557D6"/><text x="514" y="149" text-anchor="middle" fill="#3557D6">日本</text>
+        <circle cx="380" cy="228" r="6" fill="#F2A516"/><rect x="392" y="236" width="64" height="28" rx="14" fill="#fff" stroke="#DCE3F5"/><text x="424" y="255" text-anchor="middle">香港</text>
+        <circle cx="230" cy="240" r="7" fill="#F2A516"/><rect x="150" y="196" width="64" height="28" rx="14" fill="#fff" stroke="#DCE3F5"/><text x="182" y="215" text-anchor="middle">タイ</text>
+        <circle cx="270" cy="305" r="7" fill="#F2A516"/><rect x="120" y="292" width="136" height="28" rx="14" fill="#fff" stroke="#DCE3F5"/><text x="188" y="311" text-anchor="middle">シンガポール</text>
+      </g>
+    </svg>
+    <div style="position:absolute;right:88px;top:250px;width:640px;display:flex;flex-direction:column;gap:18px">
+      <div class="card prodrow a r d5"><div class="ic">💬</div><div><h3>Raccoon AI Service</h3><p>自社専用の AI カスタマーサービス。<br>生成 AI による新しい顧客対応へ。</p></div></div>
+      <div class="card prodrow a r d6"><div class="ic">🧭</div><div><h3>Raccoon AI GEO</h3><p>AI 検索時代のブランド戦略。<br>AI のおすすめに、自社ブランドを。</p></div></div>
+      <div class="card prodrow a r d7"><div class="ic">🚀</div><div><h3>Raccoon AI CREW</h3><p>企業のための AI 社員。<br>会話から実行まで、シームレスな協働を。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 Enterprise Crew Platform -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">PLATFORM</div>
+    <h1 class="t a d1">Raccoon AI - エンタープライズ Crew プラットフォーム</h1>
+    <div class="lead a d2" style="margin-top:6px">日々の社内の会話を、実際のビジネスアクションへ。</div>
+  </div>
+  <div class="pf">
+    <div class="lab a l d2">👥 AI ワークフォース<small>AI 社員・アプリ</small></div>
+    <div class="a d3" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;grid-column:2/4">
+      <div class="grp"><h4>Raccoon 提供<small>すぐに導入可能</small></h4><div class="cells" style="grid-template-columns:1fr 1fr 70px"><div class="cell">Service AI<small>24時間オムニチャネル対応</small></div><div class="cell">GEO Agent<small>生成AI検索の最適化</small></div><div class="cell more">ほか</div></div></div>
+      <div class="grp"><h4>部門横断エージェント<small>Agent Squads</small></h4><div class="cells" style="grid-template-columns:1fr 1fr 1fr"><div class="cell">営業<small>リード選別・CRM同期</small></div><div class="cell">人事<small>入社手続き・FAQ</small></div><div class="cell">経理<small>請求・消込</small></div></div></div>
+      <div class="grp"><h4>パートナー開発<small>業界特化</small></h4><div class="cells" style="grid-template-columns:1fr 1fr 70px"><div class="cell">マーケ Agent<small>コンテンツ・施策実行</small></div><div class="cell">EC AI<small>注文・カタログ支援</small></div><div class="cell more">ほか</div></div></div>
+    </div>
+    <div class="lab a l d4">🧩 Raccoon AI<br>プラットフォーム<small>構築・統制・接続</small></div>
+    <div class="a d5" style="display:flex;flex-direction:column;gap:10px">
+      <div class="grp"><h4>構築 Build<small>AI 社員を大規模に作成・カスタマイズ</small></h4><div class="cells" style="grid-template-columns:repeat(4,1fr)"><div class="cell">AI 社員ビルダー</div><div class="cell">スキル・ツール</div><div class="cell">ワークフロー</div><div class="cell">ナレッジ・記憶</div></div></div>
+      <div class="grp"><h4>統制 Govern<small>エンタープライズ水準の管理・セキュリティ</small></h4><div class="cells" style="grid-template-columns:repeat(4,1fr)"><div class="cell">権限管理<small>閲覧・編集・実行</small></div><div class="cell">承認フロー<small>Human-in-the-loop</small></div><div class="cell">監査ログ<small>全操作を記録</small></div><div class="cell">ポリシー<small>ガードレール</small></div></div></div>
+      <div class="grp"><h4>接続 Connect<small>社内のデータ・システムを AI へ</small></h4><div class="cells" style="grid-template-columns:repeat(4,1fr)"><div class="cell">3,000+ 連携<small>アプリ・API</small></div><div class="cell">企業データ<small>CRM・ERP・CDP</small></div><div class="cell">API / MCP<small>標準プロトコル</small></div><div class="cell">ナレッジソース<small>マニュアル・Wiki</small></div></div></div>
+    </div>
+    <div class="grp a r d6" style="display:flex;flex-direction:column;gap:8px"><h4>🏪 AI マーケットプレイス</h4><div class="cell">AI アプリケーション<small>完成済み AI 社員</small></div><div class="cell">AI エージェント<small>個別ユースケース</small></div><div class="cell">スキル・ツール<small>再利用できる機能</small></div><div class="cell">インテグレーション<small>コネクタ・データ</small></div></div>
+    <div class="lab a l d7">🗄 社内システム<br>・データ</div>
+    <div class="grp a d8" style="grid-column:2/4;display:flex;align-items:center;gap:26px;font-weight:700;color:var(--sub);font-size:15px">
+      <span>Salesforce</span><span>Microsoft Teams</span><span>Google Drive</span><span>HubSpot</span><span>Notion</span><span>Shopify</span><span>…</span>
+      <span style="margin-left:auto" class="cell">業務データ<small>顧客・注文・商品</small></span><span class="cell">ナレッジ<small>マニュアル・FAQ</small></span>
+    </div>
+  </div>
+</section>
+
+<!-- 4 CREW in Teams / Slack -->
+<section class="slide">
+  <div class="pad">
+    <img class="a" src="assets/raccoon-logo.svg" style="height:56px">
+    <div class="a d1" style="font-size:30px;font-weight:900;color:var(--navy);margin-top:12px">普段のチャットツールの中で働く、<span class="hl">カスタマイズ可能な AI Crew</span></div>
+  </div>
+  <div class="app a l d2" style="left:60px;top:210px;width:760px;height:600px">
+    <div class="top" style="background:#464EB8"><b>Microsoft Teams</b><span style="opacity:.7;margin-left:10px">グロース＆マーケティング</span></div>
+    <div class="body"><div class="side" style="background:#EBEBF5;color:#33344A"><div class="h" style="color:#666">チーム</div><div class="ch sel" style="background:#fff">一般</div><div class="ch">広告運用</div><div class="ch">キャンペーン振り返り</div></div>
+    <div class="main"><div class="chead"># 一般 <small style="font-weight:400;color:#98A0BC">投稿</small></div>
+      <div class="msgs seq" data-gap="900">
+        <div class="msg"><div class="av" style="background:#C8735D">鈴</div><div><div class="nm">鈴木 美咲<small>11:05</small></div>@Marketing Crew 先月の Google 広告・Meta 広告の成果と予算消化をまとめて、来月以降にリード品質を高めて<b>成果を 20% 改善</b>する施策を提案してください。</div></div>
+        <div class="msg"><div class="av bot"><img src="assets/raccoon-icon.svg"></div><div class="typing"><i></i><i></i><i></i></div></div>
+        <div class="msg"><div class="av bot"><img src="assets/raccoon-icon.svg"></div><div style="flex:1"><div class="nm">Marketing Crew<span class="app-tag">APP</span><small>11:06</small></div>鈴木さん、月次の広告監査と 60 日成長戦略です。
+          <div class="kv"><span>総広告費</span><b>¥3,725,000 / ¥3,750,000（消化率 99.4%）</b><span>獲得リード</span><b>1,420 件（前月比 +14.6%）</b><span>平均 CPA</span><b>¥2,630</b><span>商談化率</span><b>38.5%（+4.2pt）</b></div></div></div>
+        <div class="msg"><div class="av bot" style="visibility:hidden"></div><div style="flex:1"><b>+20% 達成に向けた提案</b><br>① Meta 広範囲配信から ¥525,000 を高意図キーワードへ再配分<br>② 顧客ストーリー型動画を 12 本展開　③ LP の見出し A/B テスト
+          <div class="btns"><span class="btn">📊 戦略スライドを開く</span></div></div></div>
+      </div></div></div>
+  </div>
+  <div class="app a r d4" style="left:700px;top:300px;width:850px;height:560px">
+    <div class="top" style="background:#3F0E40"><span class="dot"></span><span class="dot"></span><span class="dot"></span><b style="margin-left:10px">Slack</b></div>
+    <div class="body"><div class="side" style="background:#3F0E40"><b style="color:#fff;padding-left:10px">Acme Japan</b><div class="h">チャンネル</div><div class="ch"># general</div><div class="ch sel"># 営業アウトバウンド</div><div class="ch"># growth</div><div class="h">アプリ</div><div class="ch">🦝 Sales Crew</div></div>
+    <div class="main"><div class="chead"># 営業アウトバウンド</div>
+      <div class="msgs seq" data-gap="900" data-start="2600">
+        <div class="msg"><div class="av" style="background:#5B7BD5">林</div><div><div class="nm">林 健司<small>事業開発責任者 10:14</small></div>@Sales Crew B2B SaaS 向けの初回メール文面を作成し、ICP に合う見込み客を 500 社以上リストアップして配信を開始してください。返信があれば日程調整リンクで自動フォローし、毎日アポ獲得状況を報告してください。</div></div>
+        <div class="msg"><div class="av bot"><img src="assets/raccoon-icon.svg"></div><div style="flex:1"><div class="nm">Sales Crew<span class="app-tag">APP</span><small>10:15</small></div>承知しました。見込み客リストの検証とメール配信の準備が完了しました。
+          <div class="kv"><span>対象見込み客</span><b>128 社・542 名を検証済み</b><span>到達率スコア</span><b>99.2%</b><span>自動フォロー</span><b>返信から 90 秒以内に日程調整リンク送付</b></div></div></div>
+        <div class="msg"><div class="av bot" style="visibility:hidden"></div><div style="flex:1"><b>本日の確定アポ</b> <span class="tag g">+6 件</span>
+          <table class="mini"><tr><th>企業</th><th>担当</th><th>スコア</th><th>状況</th></tr>
+          <tr><td>クラウドスケール株式会社</td><td>オペレーション部長</td><td>99%</td><td><span class="tag g">アポ確定</span></td></tr>
+          <tr><td>フィンテックフロー株式会社</td><td>CS 責任者</td><td>98%</td><td><span class="tag g">アポ確定</span></td></tr>
+          <tr><td>ネクストジェンデータ</td><td>CX 部長</td><td>97%</td><td><span class="tag b">開封済み</span></td></tr></table></div></div>
+      </div></div></div>
+  </div>
+</section>
+
+<!-- 5 Accountable -->
+<section class="slide">
+  <div class="pad">
+    <img class="a" src="assets/raccoon-logo.svg" style="height:56px">
+    <div class="a d1" style="font-size:30px;font-weight:900;color:var(--navy);margin-top:12px">すべての AI アクションを、<span class="hl">説明可能・追跡可能・監査可能</span>に</div>
+  </div>
+  <div class="app a l d2" style="left:60px;top:210px;width:720px;height:620px">
+    <div class="top" style="background:#3F0E40"><span class="dot"></span><span class="dot"></span><span class="dot"></span><b style="margin-left:10px">Slack</b></div>
+    <div class="body"><div class="side" style="background:#3F0E40"><b style="color:#fff;padding-left:10px">Raccoon AI</b><div class="h">チャンネル</div><div class="ch"># general</div><div class="ch sel"># 経理-消込</div><div class="ch"># operations</div></div>
+    <div class="main"><div class="chead"># 経理-消込 <small style="font-weight:400;color:#98A0BC">4 名</small></div>
+      <div class="msgs seq" data-gap="800">
+        <div class="msg"><div class="av bot"><img src="assets/raccoon-icon.svg"></div><div style="flex:1"><div class="nm">経理消込 Raccoon<span class="app-tag">APP</span><small>9:00</small></div><b>先週の消込が完了しました（10/5〜10/11）</b>
+          <div style="display:flex;gap:28px;margin-top:8px"><div>想定注文<br><b style="font-size:22px" data-count="12480" data-sep>0</b></div><div>自動照合<br><b style="font-size:22px" data-count="12431" data-sep>0</b></div><div>要確認<br><b style="font-size:22px;color:var(--red)" data-count="49">0</b></div></div></div></div>
+        <div class="msg"><div class="av bot" style="visibility:hidden"></div><div style="flex:1"><table class="mini"><tr><th>差異内容</th><th>件数</th><th>金額</th></tr><tr><td>返品注文なしの返金</td><td>18</td><td>¥196,600</td></tr><tr><td>送料の不一致</td><td>21</td><td>¥18,200</td></tr><tr><td>出荷済み・未請求</td><td>10</td><td>¥134,500</td></tr></table></div></div>
+        <div class="msg"><div class="av bot" style="visibility:hidden"></div><div style="flex:1;border-left:3px solid #CFD5E6;padding-left:12px"><b>上長承認待ち</b><br>18 件の返金は入金記録と照合済みです。ERP に返品注文を作成するには承認してください。
+          <div class="btns"><span class="btn pp" id="approve1">18 件を承認</span><span class="btn">詳細を見る</span><span class="btn">却下</span></div></div></div>
+        <div class="msg"><div class="av bot" style="visibility:hidden"></div><div class="ok-banner" style="flex:1">✅ 承認済み — ERP に返品注文 18 件を作成しました（監査ログ #A-2041）</div></div>
+      </div></div></div>
+  </div>
+  <div class="app a r d4" style="left:740px;top:250px;width:810px;height:600px">
+    <div class="top" style="background:#3F0E40"><span class="dot"></span><span class="dot"></span><span class="dot"></span><b style="margin-left:10px">Slack</b></div>
+    <div class="body"><div class="side" style="background:#3F0E40;width:170px"><b style="color:#fff;padding-left:10px">Acme Japan</b><div class="h">チャンネル</div><div class="ch sel"># 在庫-サプライチェーン</div><div class="ch"># finance</div><div class="h">アプリ</div><div class="ch">🦝 Inventory Crew</div></div>
+    <div class="main"><div class="chead"># 在庫-サプライチェーン</div>
+      <div class="msgs seq" data-gap="900" data-start="2000">
+        <div class="msg"><div class="av bot"><img src="assets/raccoon-icon.svg"></div><div style="flex:1"><div class="nm">Inventory Crew<span class="app-tag">APP</span><small>9:00</small></div>⚠️ <b>在庫アラート：移動の承認が必要です</b><br>日本市場の在庫が 2 週間以内に欠品する見込みです。
+          <div class="kv"><span>商品</span><b>TR-1024</b><span>現在庫</span><b>台湾 1,200 / 日本 420</b><span>需要予測（2週間）</span><b>1,020 個</b><span>推奨移動数</span><b style="color:var(--amber)">600 個（台湾 → 日本）</b></div>
+          <div style="margin-top:6px;color:var(--sub)">💡 根拠：直近 14 日で日本の需要が 62% 増加／台湾在庫に欠品リスクなし</div>
+          <div class="btns"><span class="btn ok" id="approve2">移動を承認</span><span class="btn">却下</span><span class="btn">変更を依頼</span></div></div></div>
+        <div class="msg"><div class="av" style="background:#C8735D">鈴</div><div><div class="nm">鈴木 美咲<small>9:07</small></div>ありがとう。この内容で承認します。</div></div>
+        <div class="msg"><div class="av bot"><img src="assets/raccoon-icon.svg"></div><div class="ok-banner" style="flex:1">✅ 移動承認済み — TR-1024（600 個）の移動指示を作成し、ERP（S-2041）を更新しました。</div></div>
+      </div></div></div>
+  </div>
+</section>
+
+<!-- 6 人材課題 -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">市場の課題</div>
+    <h1 class="t a d1">人が採れない・定着しない ―<br>カスタマーサポートの<em>構造的な課題</em></h1>
+    <div style="display:flex;gap:80px;margin-top:80px">
+      <div class="a d3"><div class="big" style="font-size:150px"><span data-count="70">0</span><span style="font-size:70px">%</span></div><div style="font-size:26px;font-weight:700;margin-top:18px">の企業が人材採用に苦戦</div></div>
+      <div class="a d5"><div class="big" style="font-size:150px"><span data-count="30">0</span>–<span data-count="45">0</span><span style="font-size:70px">%</span></div><div style="font-size:26px;font-weight:700;margin-top:18px">カスタマーサポートの離職率</div></div>
+    </div>
+  </div>
+  <img class="a r d4" src="assets/jayce_02_service_agent-web.png" style="position:absolute;right:80px;bottom:0;height:720px">
+</section>
+
+<!-- 7 営業時間外 -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">市場の課題</div>
+    <h1 class="t a d1">ビジネスチャンスの多くは、<em>営業時間外</em>に生まれている</h1>
+    <div class="lead a d2">世界の EC ピーク時間帯（日曜日）</div>
+    <div class="card a d3" style="margin-top:50px;padding:70px 70px 60px">
+      <div style="display:grid;grid-template-columns:190px 1fr;row-gap:56px;align-items:center;font-weight:700;font-size:17px">
+        <div>インターネット<br>トラフィックのピーク</div><div class="tl"><div class="seg" style="left:79.1%;width:16.7%;background:var(--navy);transition-delay:.4s">19–23時</div></div>
+        <div>世界の<br>ショッピング時間帯</div><div class="tl"><div class="seg" style="left:45.8%;width:8.3%;background:var(--blue);transition-delay:.7s">11–12時</div><div class="seg" style="left:54.2%;width:8.3%;background:var(--blue);transition-delay:.9s">13–15時</div><div class="seg" style="left:75%;width:8.3%;background:var(--blue);transition-delay:1.1s">18–20時</div></div>
+        <div>Amazon の<br>アクセスピーク</div><div class="tl"><div class="seg" style="left:41.7%;width:16.7%;background:var(--amber);transition-delay:1.3s">10–14時</div><div class="seg" style="left:75%;width:12.5%;background:var(--amber);transition-delay:1.5s">18–21時</div></div>
+        <div></div><div style="display:flex;justify-content:space-between;color:var(--sub);font-family:'Noto Sans';font-size:15px"><span>0:00</span><span>6:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+      </div>
+      <div style="position:relative;margin-top:-180px;margin-left:190px;height:180px;pointer-events:none">
+        <div style="position:absolute;left:75%;right:0;top:-40px;bottom:-26px;background:rgba(53,87,214,.07);border:2px dashed rgba(53,87,214,.35);border-radius:12px"></div>
+      </div>
+    </div>
+  </div>
+  <div class="summary a d8">🌙 有人対応が終わる <b>18時以降</b> こそ購買のピーク。AI なら 24 時間、取りこぼしゼロへ。</div>
+</section>
+
+<!-- 8 顧客行動の変化 -->
+<section class="slide">
+  <div class="pad" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+    <div>
+      <div class="kicker a">市場の変化</div>
+      <h1 class="t a d1" style="font-size:64px">顧客の行動は<br><em>変わった</em> ↗</h1>
+    </div>
+    <div>
+      <div class="a d2"><span class="big" style="font-size:150px"><span data-count="50">0</span><span style="font-size:70px">%</span></span></div>
+      <div class="a d3" style="font-size:26px;font-weight:700;margin-top:10px">のインターネットユーザーが生成 AI を利用</div>
+      <div class="a d4" style="height:2px;background:var(--line);margin:34px 0"></div>
+      <div class="a d5" style="font-size:24px;line-height:1.7">💬 顧客は <b class="hl">AI と会話すること</b> に慣れ始めている</div>
+      <div class="a d6" style="font-size:24px;line-height:1.7;margin-top:18px">⚡ 情報を探すより、<b class="hl">すぐに答えが返ってくること</b> を期待している</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 課題 -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">1,000 社以上の調査結果</div>
+    <h1 class="t a d1">企業が抱える<em>主要な課題</em></h1>
+    <div style="width:860px;margin-top:50px">
+      <div class="pain a d2"><span class="lb">人件費の高騰と高い離職率</span><span class="pc"><span data-count="90">0</span>%</span><div class="bar"><i data-w="90"></i></div></div>
+      <div class="pain a d3"><span class="lb">言語の壁が海外展開を阻む</span><span class="pc"><span data-count="70">0</span>%</span><div class="bar"><i data-w="70"></i></div></div>
+      <div class="pain a d4"><span class="lb">営業時間外の機会損失</span><span class="pc"><span data-count="90">0</span>%</span><div class="bar"><i data-w="90"></i></div></div>
+      <div class="pain a d5"><span class="lb">スタッフへの商品・キャンペーン情報共有が追いつかない</span><span class="pc"><span data-count="90">0</span>%</span><div class="bar"><i data-w="90"></i></div></div>
+      <div class="pain a d6"><span class="lb">顧客が即時の回答を求めている</span><span class="pc"><span data-count="70">0</span>%</span><div class="bar"><i data-w="70"></i></div></div>
+      <div class="pain a d7"><span class="lb">データが乏しく、次の打ち手につながらない</span><span class="pc"><span data-count="85">0</span>%</span><div class="bar"><i data-w="85"></i></div></div>
+    </div>
+  </div>
+  <img class="a r d4" src="assets/jayce_01_main_intro-web.png" style="position:absolute;right:60px;bottom:0;height:640px">
+</section>
+
+<!-- 10 3つのコア機能 -->
+<section class="slide">
+  <div class="pad" style="display:grid;grid-template-columns:460px 1fr;gap:60px">
+    <div style="padding-top:60px">
+      <div class="a" style="font-family:'Noto Sans';font-weight:900;font-size:180px;color:var(--amber);line-height:1">3</div>
+      <h1 class="t a d1" style="font-size:52px">つのコア機能</h1>
+      <div class="lead a d2">顧客体験を高め、<br>成長を加速する。</div>
+      <img class="a d3" src="assets/jayce_02_service_agent-web.png" style="height:330px;margin-top:20px">
+    </div>
+    <div style="padding-top:40px">
+      <div class="feat a r d3"><div class="no">01</div><div><h3>24時間365日の AI カスタマーサポート</h3><ul><li>FAQ ナレッジベース</li><li>LLM による AI 回答</li><li>自然言語処理</li><li>AI による文脈に沿った追加質問</li><li>多言語対応</li><li>スマート有人切替</li><li>会話スタイルのカスタマイズ</li><li>リアルタイム会話モニタリング</li><li>意図に応じたスクリプト・情報抽出</li><li>自動タグ付け</li></ul></div></div>
+      <div class="feat a r d5"><div class="no">02</div><div><h3>販売・運営管理</h3><ul><li>EC 連携</li><li>商品レコメンド</li><li>注文状況の確認</li><li>API による自動更新</li></ul></div></div>
+      <div class="feat a r d7"><div class="no">03</div><div><h3>メッセージ統合・データハブ</h3><ul><li>オムニチャネル対応</li><li>SDK・プラグイン</li><li>AI データ分析</li><li>会話管理</li><li>AI 要約・情報抽出</li><li>満足度アンケート</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 Advanced AI -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">TECHNOLOGY</div>
+    <h1 class="t a d1">中核に、<em>最先端の生成 AI</em></h1>
+    <div class="a d2" style="display:flex;gap:16px;margin-top:40px"><span class="pill" style="font-size:22px;padding:12px 30px">✦ Gemini</span><span class="pill" style="font-size:22px;padding:12px 30px;border-color:#D97757;color:#D97757">✺ Claude</span><span class="pill" style="font-size:22px;padding:12px 30px;border-color:#9AA3C0;color:#5A6385">ほか最新モデル</span></div>
+    <div class="a d3" style="font-size:26px;line-height:1.9;margin-top:60px;width:720px;border-left:6px solid var(--blue);padding-left:28px">
+      最新の生成 AI を搭載。<br>Raccoon AI は顧客の<b class="hl">意図を瞬時に理解</b>し、<br>あらゆるチャネルで<b class="hl">迅速かつ正確な回答</b>を届けます。
+    </div>
+  </div>
+  <div class="phone a r d2" style="right:120px;top:90px;height:740px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプルアパレル<small>AI アシスタント</small></div></div>
+    <div class="pm seq" data-gap="1100" data-start="900">
+      <div class="b-user">妻へのプレゼントでパジャマを探しています。サイズの選び方は？</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>素敵なプレゼントですね！サイズ選びのコツをご案内します 😊</div>
+      <div class="b-ai"><b>① 普段のサイズを確認</b><br>お手持ちのパジャマや部屋着のタグをご確認いただくのが一番確実です。</div>
+      <div class="b-ai"><b>② お好みのシルエット</b><br>ゆったり派なら 1 サイズ上がおすすめ。迷ったら大きめが安心です。</div>
+      <div class="b-ai">身長と普段の服のサイズを教えていただければ、ぴったりのサイズをご提案します！</div>
+    </div>
+    <div class="pi">メッセージを入力…</div>
+  </div>
+</section>
+
+<!-- 12 FAQ -->
+<section class="slide">
+  <div class="pad">
+    <span class="pill fill a">FAQ ナレッジベース</span>
+    <h1 class="t a d1" style="margin-top:40px">FAQ を、<em>価値ある顧客接点</em>へ</h1>
+    <div class="a d2" style="margin-top:80px"><span class="big" style="font-size:130px"><span data-count="80">0</span><span style="font-size:60px">%</span></span><span style="font-size:28px;font-weight:700;margin-left:16px">の問い合わせは「よくある質問」</span></div>
+    <div class="lead a d3" style="margin-top:40px;font-size:24px">生成 AI がよくある質問に即座に回答し、<br>すべての問い合わせをエンゲージメントの機会に変えます。</div>
+  </div>
+  <div class="phone a r d2" style="right:120px;top:90px;height:740px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプル取引所<small>AI スマートカスタマーサービス</small></div></div>
+    <div class="pm seq" data-gap="1100" data-start="900">
+      <div class="b-ai">こんにちは！AI カスタマーサービスです。ご用件をお聞かせください。</div>
+      <div class="b-user">ワンタイムパスワード（OTP）って何ですか？</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>少々お待ちください、確認いたします 🔍</div>
+      <div class="b-ai">OTP（ワンタイムパスワード）は、一度だけ使える使い捨てのパスワードで、本人確認のために動的に生成されます。<br><br>一度しか使えないため、固定パスワードより安全性が高く、ログインや出金時の不正利用を防ぎます。</div>
+    </div>
+    <div class="pi">メッセージを入力…</div>
+  </div>
+</section>
+
+<!-- 13 AI 追加質問 -->
+<section class="slide">
+  <div class="pad">
+    <span class="pill fill a">AI による文脈に沿った追加質問</span>
+    <h1 class="t a d1" style="margin-top:40px">顧客の意図と文脈から、<br><em>次の質問を自動で提案</em></h1>
+    <div class="card a d3" style="margin-top:50px;width:820px;padding:24px 28px">
+      <div style="display:flex;gap:12px;align-items:center;font-weight:700"><span class="tag b" style="font-size:14px;padding:4px 12px">☑ AI 自動生成</span><span class="tag" style="font-size:14px;padding:4px 12px;background:#F1F3F9;color:#5A6385">手動設定</span><span style="margin-left:auto;color:var(--sub);font-size:14px">合計 5 / 5</span></div>
+      <div style="margin-top:16px;font-size:15px;color:var(--sub)">すべての会話の後に追加質問を表示し、関連トピックへの会話継続を促します。</div>
+      <div class="seq" data-gap="500" data-start="1500" style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+        <div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:8px 12px">ブラックフライデーのセール内容は？</div>
+        <div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:8px 12px">価格アラートの通知を止めるには？</div>
+        <div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:8px 12px">新規上場の通知を受け取るには？</div>
+      </div>
+    </div>
+  </div>
+  <div class="phone a r d2" style="right:120px;top:90px;height:740px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプル取引所<small>AI スマートカスタマーサービス</small></div></div>
+    <div class="pm seq" data-gap="1100" data-start="900">
+      <div class="b-user">価格通知の設定方法は？</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>関連情報を確認します 🔍<br><br>価格通知を受け取るには、市場画面で銘柄ごとのベルアイコンをオンにしてください。<br><br>「アカウント → 価格通知」から、設定済みの通知を一覧で確認・編集できます。</div>
+      <div class="chips"><span class="chip">通知を止めるには？</span><span class="chip">通知が届かない場合</span><span class="chip">対応銘柄を見る</span></div>
+    </div>
+    <div class="pi">メッセージを入力…</div>
+  </div>
+</section>
+
+<!-- 14 多言語 -->
+<section class="slide">
+  <div class="pad">
+    <span class="pill fill a">多言語 AI サポート</span>
+    <h1 class="t a d1" style="margin-top:40px">お客様の<em>母国語で、24時間365日</em><br>サポート</h1>
+    <div class="card a d3" style="margin-top:50px;width:780px;padding:24px 28px;font-size:15px">
+      <b style="font-size:17px;color:var(--navy)">言語設定</b>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px">
+        <div><div style="color:var(--sub);font-size:13px">対応言語 *</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-top:4px">多言語（自動判定）</div></div>
+        <div><div style="color:var(--sub);font-size:13px">デフォルト言語 *</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-top:4px">日本語</div></div>
+      </div>
+      <div style="margin-top:12px;color:var(--sub);font-size:13px">お客様の入力言語を自動で判定し、同じ言語で回答します。</div>
+    </div>
+  </div>
+  <div class="phone a r d2" style="right:120px;top:90px;height:740px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプルホテル<small>24h 多言語対応</small></div></div>
+    <div class="pm seq" data-gap="900" data-start="900">
+      <div class="b-user">チェックインは何時からですか？</div>
+      <div class="b-ai"><span class="lbl">🇯🇵 日本語</span>チェックインは 15:00 からです。</div>
+      <div class="b-user">What time is check-in?</div>
+      <div class="b-ai"><span class="lbl">🇺🇸 English</span>Check-in starts at 3:00 PM.</div>
+      <div class="b-user">請問幾點可以入住？</div>
+      <div class="b-ai"><span class="lbl">🇹🇼 繁體中文</span>入住時間為下午 3 點開始。</div>
+    </div>
+    <div class="pi">メッセージを入力…</div>
+  </div>
+</section>
+
+<!-- 15 エコシステム -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">ECOSYSTEM</div>
+    <h1 class="t a d1">Raccoon AI エコシステム</h1>
+    <div class="lead a d2" style="margin-top:6px">データを統合し、FAQ 回答の先へ。</div>
+  </div>
+  <svg viewBox="0 0 1600 900" style="position:absolute;inset:0;width:100%;height:100%">
+    <g stroke="#6B96EC" stroke-width="3" fill="none" stroke-dasharray="8 8">
+      <path d="M560 520 L 820 520"><animate attributeName="stroke-dashoffset" values="32;0" dur="1s" repeatCount="indefinite"/></path>
+      <path d="M380 470 L 380 360"><animate attributeName="stroke-dashoffset" values="32;0" dur="1s" repeatCount="indefinite"/></path>
+      <path d="M380 580 L 380 700"><animate attributeName="stroke-dashoffset" values="32;0" dur="1s" repeatCount="indefinite"/></path>
+      <path d="M560 500 Q 700 400 820 330"><animate attributeName="stroke-dashoffset" values="32;0" dur="1s" repeatCount="indefinite"/></path>
+    </g>
+  </svg>
+  <div class="card a d3" style="position:absolute;left:150px;top:250px;width:460px;padding:18px 22px">
+    <b style="color:var(--navy)">顧客とのコミュニケーションチャネル</b>
+    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap"><span class="pill" style="font-size:14px;padding:4px 14px;border-color:#06C755;color:#06C755">LINE</span><span class="pill" style="font-size:14px;padding:4px 14px">Web チャット</span><span class="pill" style="font-size:14px;padding:4px 14px;border-color:#E1306C;color:#E1306C">Instagram</span><span class="pill" style="font-size:14px;padding:4px 14px;border-color:#0084FF;color:#0084FF">Messenger</span><span class="pill" style="font-size:14px;padding:4px 14px;border-color:#25D366;color:#25D366">WhatsApp</span><span class="pill" style="font-size:14px;padding:4px 14px;border-color:#9AA3C0;color:#5A6385">メール</span></div>
+    <div style="display:flex;justify-content:space-between;margin-top:12px;color:var(--sub);font-size:14px"><span>↓ 問い合わせ</span><span>↑ AI による回答</span></div>
+  </div>
+  <div class="a z d4 pulse" style="position:absolute;left:200px;top:470px;width:360px;height:110px;border-radius:24px;background:var(--navy);display:grid;place-items:center"><img src="assets/raccoon-logo.svg" style="width:290px;filter:brightness(0) invert(1)"></div>
+  <div class="card a d5" style="position:absolute;left:150px;top:700px;width:560px;padding:18px 22px">
+    <b style="color:var(--navy)">カスタマーサービス基盤・チケット管理</b>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap"><span class="pill" style="font-size:14px;padding:4px 14px">Zendesk</span><span class="pill" style="font-size:14px;padding:4px 14px">Salesforce</span><span class="pill" style="font-size:14px;padding:4px 14px">Omnichat</span><span class="pill" style="font-size:14px;padding:4px 14px">ほか</span></div>
+    <div style="margin-top:10px;color:var(--sub);font-size:14px">・顧客情報を記録　・対応ステータスを更新　・過去の対応履歴を参照</div>
+  </div>
+  <div class="a r d5" style="position:absolute;left:820px;top:250px;width:680px">
+    <div class="pill fill" style="font-size:24px;padding:14px 36px">データ統合で、FAQ 回答の先へ</div>
+  </div>
+  <div class="card a r d6" style="position:absolute;left:820px;top:380px;width:680px;padding:24px 28px">
+    <b style="color:var(--navy);font-size:20px">ストアデータ・アプリのバックエンドと連携</b>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px">
+      <div class="grp" style="border:1px solid var(--line);border-radius:12px;padding:14px;background:#F8FAFF"><span class="tag b">API</span><div style="margin-top:8px;font-size:14px;color:var(--sub)">自社システム・<br>独自 API</div></div>
+      <div class="grp" style="border:1px solid var(--line);border-radius:12px;padding:14px;background:#F8FAFF"><span class="tag b">EC</span><div style="margin-top:8px;font-size:14px;color:var(--sub)">Shopify・<br>各種カートシステム</div></div>
+      <div class="grp" style="border:1px solid var(--line);border-radius:12px;padding:14px;background:#F8FAFF"><span class="tag b">CDP</span><div style="margin-top:8px;font-size:14px;color:var(--sub)">会員・購買データ<br>の統合</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 商品レコメンド -->
+<section class="slide">
+  <div class="pad">
+    <div class="card a l" style="width:440px;padding:40px 36px;text-align:center;margin-top:30px">
+      <h1 class="t" style="font-size:40px">商品レコメンド</h1>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:28px"><span class="pill">API 連携</span><span class="pill">EC 連携</span></div>
+      <div class="big" style="font-size:110px;margin-top:50px;color:var(--amber)"><span data-count="30">0</span><span style="font-size:50px">%</span></div>
+      <div style="font-size:26px;font-weight:900;color:var(--navy);margin-top:10px">会話率が向上</div>
+    </div>
+  </div>
+  <div class="phone a r d2" style="left:640px;top:70px;height:780px;width:420px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプルスポーツ<small>有人対応 12:00–20:00</small></div></div>
+    <div class="pm seq" data-gap="1000" data-start="900">
+      <div class="b-user">予算 2 万円でトレーニングウェアのおすすめある？</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>もちろんです！ご予算に合うアイテムを見つけました 🏃</div>
+      <div class="b-ai"><b>1. ワッフルポケット ロングスリーブ</b><br>価格：¥16,800<br>理由：保温性の高い素材とストリート感のあるデザインで、肌寒い季節のトレーニングに最適です。</div>
+      <div class="prod"><div class="pc"><div class="im">👕</div><div class="tx"><b>ワッフル ロングスリーブ</b>¥16,800</div></div><div class="pc"><div class="im">🩳</div><div class="tx"><b>ハイウエスト レギンス</b>¥12,800</div></div><div class="pc"><div class="im">🧥</div><div class="tx"><b>ライト ジャケット</b>¥19,800</div></div></div>
+    </div>
+    <div class="pi">メッセージを入力…</div>
+  </div>
+  <div class="card a r d4" style="position:absolute;left:1110px;top:200px;width:420px;padding:22px">
+    <b style="color:var(--navy)">ハイウエスト レギンス</b>
+    <div style="height:150px;margin:12px 0;border-radius:12px;background:linear-gradient(135deg,#DDE5FB,#F3E9FF);display:grid;place-items:center;font-size:60px">🩳</div>
+    <ul style="list-style:none;font-size:15px;line-height:1.9;color:var(--sub)"><li>● なめらかで肌にやさしい着心地</li><li>● ひんやりとした肌ざわり</li><li>● 吸汗速乾</li><li>● 高いストレッチ性と復元力</li><li>● 毛玉になりにくい耐久性</li><li>● トレーニングにも普段使いにも</li></ul>
+  </div>
+  <div class="card a r d6" style="position:absolute;left:1110px;top:700px;width:420px;padding:16px 20px;font-size:14px;color:var(--sub)">
+    <b style="color:var(--navy)">商品データ管理</b>　EC と連携し、在庫・価格を自動同期
+    <div style="margin-top:8px"><span class="tag g">Shopify 連携済み</span></div>
+  </div>
+</section>
+
+<!-- 17 注文追跡 -->
+<section class="slide">
+  <div class="pad">
+    <div class="card a l" style="width:440px;padding:40px 36px;text-align:center;margin-top:30px">
+      <h1 class="t" style="font-size:40px">注文状況の確認</h1>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:28px"><span class="pill">API 連携</span><span class="pill">EC 連携</span></div>
+      <div class="big" style="font-size:110px;margin-top:50px;color:var(--amber)"><span data-count="3.2" data-dec="1">0</span><span style="font-size:50px">秒</span></div>
+      <div style="font-size:24px;font-weight:900;color:var(--navy);margin-top:10px">で定型の問い合わせを解決</div>
+    </div>
+  </div>
+  <div class="phone a r d2" style="left:640px;top:70px;height:780px;width:440px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプル EC ストア<small>注文サポート</small></div></div>
+    <div class="pm seq" data-gap="1000" data-start="900">
+      <div class="b-user">注文した商品がいつ届くか知りたいです</div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>確認いたします。ご注文番号またはお電話番号を教えてください 🔍</div>
+      <div class="b-user">2025112014439079</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai">ご注文情報が見つかりました！<div class="kv" style="font-size:12.5px"><span>注文番号</span><b>2025112014439079</b><span>注文日</span><b>2025/11/20 14:14</b><span>支払方法</span><b>コンビニ払い（支払済）</b><span>配送状況</span><b style="color:var(--green)">出荷済み・配送中</b><span>追跡番号</span><b>8163-6453-307</b></div></div>
+      <div class="b-ai">そのほかにお手伝いできることはありますか？</div>
+    </div>
+    <div class="pi">メッセージを入力…</div>
+  </div>
+  <div class="card a r d5" style="position:absolute;left:1130px;top:260px;width:400px;padding:22px;font-size:15px">
+    <b style="color:var(--navy)">連携の流れ</b>
+    <div class="seq" data-gap="700" data-start="1600" style="display:flex;flex-direction:column;gap:10px;margin-top:14px">
+      <div class="cell" style="border:1px solid var(--line);border-radius:10px;padding:10px 14px">① 注文番号を受け付け</div>
+      <div class="cell" style="border:1px solid var(--line);border-radius:10px;padding:10px 14px">② EC / OMS の API に照会</div>
+      <div class="cell" style="border:1px solid var(--line);border-radius:10px;padding:10px 14px">③ 配送会社の追跡情報を取得</div>
+      <div class="cell" style="border:1px solid var(--blue);border-radius:10px;padding:10px 14px;color:var(--blue)">④ AI が分かりやすく回答 ✓</div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 従来のフロービルダー -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">BEFORE</div>
+    <h1 class="t a d1">従来型のフロービルダー</h1>
+    <div class="lead a d2" style="margin-top:6px">分岐を一つずつ手作業で設計。シナリオが増えるほど、複雑で保守できない。</div>
+  </div>
+  <div class="card a l d3" id="flowA" style="position:absolute;left:88px;top:250px;width:690px;height:560px;background:#FBFCFF"></div>
+  <div class="card a r d4 dark" id="flowB" style="position:absolute;left:822px;top:250px;width:690px;height:560px;background:#1A2340;border-color:#1A2340"></div>
+</section>
+
+<!-- 19 AI スクリプトエディター -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">AFTER</div>
+    <h1 class="t a d1">Raccoon AI - <em>AI スクリプトエディター</em></h1>
+  </div>
+  <div style="position:absolute;left:88px;top:220px;right:400px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+    <div class="card a d2" style="padding:16px;font-size:13px"><b style="color:var(--navy);font-size:16px">① 発動条件</b><div style="color:var(--sub);margin:6px 0 10px">どんな会話で起動するか</div><div class="seq" data-gap="400" data-start="1200" style="display:flex;flex-direction:column;gap:6px"><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">返品・交換の相談</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">商品のサイズ相談</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">法人・大口の問い合わせ</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">イベント参加申込</div></div></div>
+    <div class="card a d3" style="padding:16px;font-size:13px"><b style="color:var(--navy);font-size:16px">② 情報収集</b><div style="color:var(--sub);margin:6px 0 10px">AI が自然な会話で聞き取り</div><div class="seq" data-gap="400" data-start="1900" style="display:flex;flex-direction:column;gap:6px"><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">注文番号 <span class="tag o">必須</span></div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">お名前</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">返品理由</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">写真の添付</div></div></div>
+    <div class="card a d4" style="padding:16px;font-size:13px"><b style="color:var(--navy);font-size:16px">③ ツール実行</b><div style="color:var(--sub);margin:6px 0 10px">API・ナレッジを呼び出し</div><div class="seq" data-gap="400" data-start="2600" style="display:flex;flex-direction:column;gap:6px"><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">🔎 ナレッジ検索</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">📦 注文 API 照会</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">📝 チケット作成</div></div></div>
+    <div class="card a d5" style="padding:16px;font-size:13px"><b style="color:var(--navy);font-size:16px">④ 回答ルール</b><div style="color:var(--sub);margin:6px 0 10px">トーン・制約を自然文で指示</div><div class="seq" data-gap="400" data-start="3300" style="display:flex;flex-direction:column;gap:6px"><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px;line-height:1.6">「返品期限を過ぎている場合は、丁寧にお詫びしたうえで有人窓口をご案内する」</div><div class="cell" style="border:1px solid var(--line);border-radius:8px;padding:6px 10px">敬語・簡潔に</div></div></div>
+  </div>
+  <svg style="position:absolute;left:88px;top:220px;width:1112px;height:20px"></svg>
+  <div style="position:absolute;right:88px;top:280px;display:flex;flex-direction:column;gap:22px">
+    <span class="pill a r d6" style="font-size:22px;padding:12px 30px">✓ ノーコード</span>
+    <span class="pill a r d7" style="font-size:22px;padding:12px 30px">✓ マルチエージェント</span>
+    <span class="pill a r d8" style="font-size:22px;padding:12px 30px">✓ LLM ベース設計</span>
+  </div>
+  <div class="summary a d9">📝 フロー図を描く代わりに、<b>やりたいことを文章で書くだけ</b>。AI が会話の流れを判断します。</div>
+</section>
+
+<!-- 20 スマート有人切替 -->
+<section class="slide">
+  <div class="pad">
+    <img class="a" src="assets/raccoon-logo.svg" style="height:56px">
+    <div class="a d1" style="font-size:40px;font-weight:900;color:var(--amber);margin-top:10px">AI スクリプトエディター</div>
+    <span class="pill a d2" style="margin-top:26px;font-size:22px;padding:10px 30px">スマート有人切替ロジック</span>
+    <div style="margin-top:50px;display:flex;flex-direction:column;gap:34px;width:760px">
+      <div class="a d3" style="display:flex;gap:24px"><span class="big" style="font-size:56px;color:var(--amber)">01</span><div><b style="font-size:26px;color:var(--navy)">有人切替ロジックを自由に設定</b><div style="font-size:19px;color:var(--sub);margin-top:4px">柔軟なルールで切替シナリオを定義</div></div></div>
+      <div class="a d4" style="display:flex;gap:24px"><span class="big" style="font-size:56px;color:var(--amber)">02</span><div><b style="font-size:26px;color:var(--navy)">切替のタイミングを AI が判断</b><div style="font-size:19px;color:var(--sub);margin-top:4px">切替前に、必要な顧客情報を収集</div></div></div>
+      <div class="a d5" style="display:flex;gap:24px"><span class="big" style="font-size:56px;color:var(--amber)">03</span><div><b style="font-size:26px;color:var(--navy)">ナレッジの不足を検知</b><div style="font-size:19px;color:var(--sub);margin-top:4px">回答できない場合はお客様にきちんとお知らせ</div></div></div>
+    </div>
+  </div>
+  <div class="card a r d3" style="position:absolute;right:120px;top:80px;width:520px;padding:18px 22px;font-size:13.5px">
+    <b style="color:var(--navy)">有人切替の設定</b>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:8px 12px">有人切替を有効にする <span style="width:40px;height:22px;border-radius:99px;background:var(--blue);position:relative"><i style="position:absolute;right:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff"></i></span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div style="border:1px solid var(--line);border-radius:8px;padding:8px 12px;color:var(--sub)">切替時メッセージ<br><span style="color:var(--ink)">担当者におつなぎします。少々お待ちください。</span></div><div style="border:1px solid var(--line);border-radius:8px;padding:8px 12px;color:var(--sub)">対応時間外の案内<br><span style="color:var(--ink)">受付時間外のため、フォームでご連絡ください。</span></div></div>
+  </div>
+  <div class="phone a r d4" style="right:120px;top:300px;height:540px;width:520px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプル取引所<small>AI スマートカスタマーサービス</small></div></div>
+    <div class="pm seq" data-gap="1100" data-start="1500">
+      <div class="b-user">オペレーターと話したいです</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>申し訳ございません。こちらのお問い合わせは専門スタッフの確認が必要です。<br><br>ご登録のメールアドレスとお問い合わせ内容をフォームにご入力いただければ、担当者よりできるだけ早くご連絡いたします。</div>
+      <div class="b-ai" style="border-color:var(--blue)">📝 お問い合わせフォーム<br><span style="color:var(--blue);text-decoration:underline">support.example.jp/requests/new</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 応用：複数データソース -->
+<section class="slide">
+  <div class="pad">
+    <img class="a" src="assets/raccoon-logo.svg" style="height:56px">
+    <div class="a d1" style="font-size:34px;font-weight:900;color:var(--amber);margin-top:10px">AI スクリプトの応用事例</div>
+    <div class="a d2" style="display:flex;gap:16px;margin-top:24px"><span class="pill" style="font-size:20px;padding:10px 26px">複数のデータソースを接続</span><span class="pill" style="font-size:20px;padding:10px 26px">追加ナレッジ（サイズ表・仕様書など）</span></div>
+  </div>
+  <div class="card a l d3" style="position:absolute;left:88px;top:300px;width:470px;height:520px;padding:22px;font-size:14px">
+    <b style="color:var(--navy);font-size:17px">ナレッジ管理</b>
+    <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+      <div style="border:1px solid var(--line);border-radius:10px;padding:12px">📚 FAQ（よくある質問）<div style="color:var(--sub);font-size:12.5px;margin-top:4px">返品・配送・会員制度など 240 件</div></div>
+      <div style="border:1px solid var(--line);border-radius:10px;padding:12px">🛍 商品データ<div style="color:var(--sub);font-size:12.5px;margin-top:4px">EC から 1,860 SKU を自動同期</div></div>
+      <div style="border:2px solid var(--blue);border-radius:10px;padding:12px;background:#F5F8FF">📐 追加ナレッジ：サイズ表<div style="color:var(--sub);font-size:12.5px;margin-top:4px">スプレッドシートをそのままアップロード</div></div>
+      <div style="border:1px solid var(--line);border-radius:10px;padding:12px">📄 仕様書・取扱説明書（PDF）</div>
+    </div>
+  </div>
+  <div class="phone a d4" style="left:600px;top:300px;height:540px;width:380px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプルインナー<small>AI アシスタント</small></div></div>
+    <div class="pm seq" data-gap="1100" data-start="1500">
+      <div class="b-user">ウエスト 70cm、ヒップ 96cm だと、このショーツは何サイズ？</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>サイズ表を確認しました 📐<br><b>「ブリーズ ショーツ」は M サイズ</b>がおすすめです（ウエスト 66–74／ヒップ 94–98cm）。<br>ゆったり履きたい場合は L もご検討ください。</div>
+    </div>
+  </div>
+  <div class="card a r d5" style="position:absolute;left:1020px;top:300px;width:500px;padding:18px;overflow:hidden">
+    <b style="color:var(--navy)">サイズ表（スプレッドシート）</b>
+    <table class="mini" style="font-size:13px" id="sizeT"><tr><th>商品名</th><th>サイズ</th><th>ウエスト</th><th>ヒップ</th><th>丈</th></tr></table>
+  </div>
+</section>
+
+<!-- 22 応用：ホテル予約 / Google Maps -->
+<section class="slide">
+  <div class="pad">
+    <img class="a" src="assets/raccoon-logo.svg" style="height:56px">
+    <div class="a d1" style="font-size:34px;font-weight:900;color:var(--amber);margin-top:10px">AI スクリプトの応用事例</div>
+  </div>
+  <div class="phone a l d2" style="left:88px;top:200px;height:640px;width:380px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプルホテルズ<small>予約アシスタント</small></div></div>
+    <div class="pm seq" data-gap="1000" data-start="900">
+      <div class="b-user">12/20 から 1 泊、大人 2 名で空いてますか？</div>
+      <div class="typing"><i></i><i></i><i></i></div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>12/20（土）1 泊・大人 2 名で空室がございます 🏨<br>① ツイン（禁煙）¥18,000<br>② ダブル（朝食付き）¥21,500</div>
+      <div class="b-user">②でお願いします</div>
+      <div class="b-ai">かしこまりました！こちらのリンクから決済をお済ませください。<div class="btns"><span class="btn ok">💳 お支払いへ進む</span></div></div>
+    </div>
+  </div>
+  <div style="position:absolute;left:500px;top:230px;width:420px">
+    <span class="pill fill a d3" style="font-size:22px;padding:10px 26px">ホテル予約</span>
+    <div class="card a d4" style="margin-top:16px;padding:20px 24px;font-size:17px;line-height:1.9">・AI が客室タイプ・空室・料金・<br>　キャンペーン・設備を検索<br>・予約の問い合わせやキャンセルに対応<br>・決済リンクを送り、予約まで完結</div>
+    <span class="pill fill a d6" style="font-size:22px;padding:10px 26px;margin-top:40px">Google マップ連携</span>
+    <div class="card a d7" style="margin-top:16px;padding:20px 24px;font-size:17px;line-height:1.9">・Google Maps API と連携し、<br>　近くの店舗や地域情報をご案内</div>
+  </div>
+  <div class="phone a r d5" style="left:960px;top:200px;height:640px;width:560px">
+    <div class="ph"><img src="assets/raccoon-icon.svg"><div>サンプルスーパー<small>店舗案内</small></div></div>
+    <div class="pm seq" data-gap="1000" data-start="2200">
+      <div class="b-user">渋谷駅の近くで今やってる店舗は？</div>
+      <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>近くの店舗はこちらです 📍<br><b>1. 渋谷宮益坂店</b>　評価 4.0｜8:00–23:00<br><b>2. 渋谷道玄坂店</b>　評価 4.1｜8:00–23:00</div>
+      <div style="height:170px;border-radius:12px;background:linear-gradient(135deg,#E8F0E3,#DDE8F7);position:relative;overflow:hidden;border:1px solid #E3E7F2">
+        <svg viewBox="0 0 500 170" style="position:absolute;inset:0;width:100%;height:100%"><path d="M0 60 L500 90 M0 130 L500 110 M150 0 L180 170 M330 0 L300 170" stroke="#fff" stroke-width="10"/><path d="M0 60 L500 90 M0 130 L500 110 M150 0 L180 170 M330 0 L300 170" stroke="#E7D9A8" stroke-width="4"/></svg>
+        <span style="position:absolute;left:150px;top:50px;font-size:30px;animation:floaty 2s infinite">📍</span><span style="position:absolute;left:300px;top:76px;font-size:30px;animation:floaty 2.4s infinite">📍</span>
+      </div>
+      <div class="b-ai">ほかにお手伝いできることはありますか？😊</div>
+    </div>
+  </div>
+</section>
+
+<!-- 23 AI ダッシュボード -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">ANALYTICS</div>
+    <h1 class="t a d1">AI ダッシュボード</h1>
+    <div class="a d2" style="font-size:26px;font-weight:700;color:var(--amber);margin-top:6px">データに基づく分析とインサイト</div>
+  </div>
+  <div class="card a d3" style="position:absolute;left:88px;top:250px;width:860px;padding:22px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><b style="color:var(--navy);font-size:18px">AI チケット概要</b><span class="tag b">直近 30 日</span></div>
+    <div style="display:flex;align-items:baseline;gap:12px;margin-top:8px"><span class="big" style="font-size:52px;color:var(--navy)" data-count="3609" data-sep>0</span><span style="color:var(--sub)">件の AI 対応チケット</span></div>
+    <div class="bar" style="height:18px;margin-top:10px"><i data-w="99.9" style="background:linear-gradient(90deg,#3557D6,#6D4AFF)"></i></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--sub);margin-top:6px"><span>AI 完結 3,604 件（99.9%）</span><span>有人切替 5 件</span></div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px">
+      <div class="kpi card"><div class="v"><span data-count="0.9" data-dec="1">0</span></div><div class="k">平均会話数 / 件</div></div>
+      <div class="kpi card"><div class="v"><span data-count="5.8" data-dec="1">0</span>秒</div><div class="k">平均応答時間</div></div>
+      <div class="kpi card"><div class="v"><span data-count="1282">0</span>秒</div><div class="k">平均会話時間</div></div>
+      <div class="kpi card"><div class="v">0 秒</div><div class="k">有人待ち時間</div></div>
+      <div class="kpi card"><div class="v"><span data-count="99.99" data-dec="2">0</span>%</div><div class="k">応答成功率</div></div>
+    </div>
+  </div>
+  <div class="card a d5" style="position:absolute;left:88px;top:610px;width:540px;height:230px;padding:18px">
+    <b style="color:var(--navy)">チケット件数の推移</b>
+    <svg viewBox="0 0 500 160" style="width:100%;height:170px"><g stroke="#EEF0F6"><path d="M0 40H500M0 80H500M0 120H500"/></g>
+      <path class="draw" style="--len:800" d="M0 120 L40 110 L80 115 L120 90 L160 95 L200 70 L240 80 L280 50 L320 60 L360 35 L400 45 L440 25 L500 30" stroke="#3557D6" stroke-width="3" fill="none"/>
+      <path class="draw" style="--len:800;transition-delay:.4s" d="M0 140 L40 138 L80 135 L120 130 L160 128 L200 120 L240 118 L280 110 L320 112 L360 100 L400 98 L440 90 L500 88" stroke="#E5484D" stroke-width="3" fill="none"/></svg>
+  </div>
+  <div class="card a d6" style="position:absolute;left:660px;top:610px;width:288px;height:230px;padding:18px;text-align:center">
+    <b style="color:var(--navy)">AI 顧客満足度（CSAT）</b>
+    <svg viewBox="0 0 120 120" style="width:140px;margin-top:8px"><circle cx="60" cy="60" r="48" stroke="#E7EBF6" stroke-width="14" fill="none"/><circle class="draw" style="--len:302" cx="60" cy="60" r="48" stroke="#3557D6" stroke-width="14" fill="none" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="302" /><text x="60" y="68" text-anchor="middle" font-size="26" font-weight="900" fill="#142572" font-family="Noto Sans">79</text></svg>
+  </div>
+  <div style="position:absolute;right:88px;top:250px;width:520px;display:flex;flex-direction:column;gap:16px">
+    <div class="card a r d4" style="padding:20px"><b style="color:var(--navy)">売上貢献</b><div style="display:flex;align-items:baseline;gap:8px;margin-top:6px"><span class="big" style="font-size:44px">+<span data-count="18">0</span>%</span><span style="color:var(--sub)">AI 経由の購入</span></div></div>
+    <div class="card a r d6" style="padding:20px"><b style="color:var(--navy)">キーワード分析</b>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+        <span class="chip" style="font-size:20px">返品</span><span class="chip">送料</span><span class="chip" style="font-size:18px">サイズ</span><span class="chip">クーポン</span><span class="chip" style="font-size:22px">配送状況</span><span class="chip">在庫</span><span class="chip">会員ランク</span><span class="chip" style="font-size:17px">ギフト包装</span></div></div>
+    <div class="card a r d8" style="padding:20px;font-size:15px;color:var(--sub);line-height:1.8">📈 件数推移・CSAT・キーワードを一画面で把握し、<b class="hl">FAQ 改善と販促施策</b>に直結。</div>
+  </div>
+</section>
+
+<!-- 24 自動タグ付け -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">ANALYTICS</div>
+    <h1 class="t a d1">AI ダッシュボード</h1>
+    <div class="a d2" style="font-size:26px;font-weight:700;color:var(--amber);margin-top:6px">データに基づく分析とインサイト</div>
+  </div>
+  <div class="card a l d3" style="position:absolute;left:88px;top:260px;width:720px;height:570px;padding:22px">
+    <span class="pill fill">AI 自動タグ付け</span>
+    <table class="mini" style="font-size:14px;margin-top:16px"><tr><th>タグ名</th><th>付与条件（自然文で設定）</th></tr></table>
+    <div class="seq" data-gap="450" data-start="1200" style="display:flex;flex-direction:column;font-size:14px">
+      <div style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid #EEF0F6;padding:9px 6px"><span class="tag b" style="justify-self:start">返品・返金</span><span>返品や返金の方法・期限について質問した場合</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid #EEF0F6;padding:9px 6px"><span class="tag b" style="justify-self:start">商品レコメンド</span><span>おすすめ商品を提案した場合</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid #EEF0F6;padding:9px 6px"><span class="tag o" style="justify-self:start">在庫切れ通知</span><span>在庫切れ商品の入荷通知を希望した場合</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid #EEF0F6;padding:9px 6px"><span class="tag b" style="justify-self:start">店舗</span><span>店舗の場所・営業時間について質問した場合</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid #EEF0F6;padding:9px 6px"><span class="tag g" style="justify-self:start">キャンペーン</span><span>セール・クーポンについて質問した場合</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid #EEF0F6;padding:9px 6px"><span class="tag" style="justify-self:start;background:#F1F3F9;color:#5A6385">初心者</span><span>初めての購入で、使い方の案内を希望した場合</span></div>
+    </div>
+  </div>
+  <div class="card a r d4" style="position:absolute;right:88px;top:260px;width:640px;height:570px;padding:26px;text-align:center">
+    <b style="color:var(--navy);font-size:22px">問い合わせ内訳</b>
+    <svg id="donut" viewBox="0 0 200 200" style="width:300px;margin:20px auto 0;display:block"></svg>
+    <div id="donutLg" style="display:grid;grid-template-columns:1fr 1fr;gap:8px 30px;margin-top:20px;text-align:left;font-size:16px"></div>
+  </div>
+</section>
+
+<!-- 25 ライブモニター -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">MONITORING</div>
+    <h1 class="t a d1" style="display:flex;gap:20px;align-items:center">AI ライブモニター
+      <span class="pill" style="font-size:20px">有人切替</span><span style="color:var(--sky)">+</span><span class="pill" style="font-size:20px">AI タグ</span><span style="color:var(--sky)">+</span><span class="pill" style="font-size:20px">AI 要約</span></h1>
+  </div>
+  <div class="app a d3" style="left:88px;top:220px;width:1424px;height:620px">
+    <div class="top" style="background:var(--navy)"><img src="assets/raccoon-icon.svg" style="width:20px;filter:brightness(0) invert(1)"><b>Raccoon AI — 会話一覧</b></div>
+    <div class="body">
+      <div style="width:380px;border-right:1px solid #EEF0F6;display:flex;flex-direction:column">
+        <div style="padding:12px;border-bottom:1px solid #EEF0F6;display:flex;gap:8px;font-size:12px"><span class="tag b">すべて</span><span class="tag" style="background:#F1F3F9;color:#5A6385">未読</span><span class="tag" style="background:#F1F3F9;color:#5A6385">対応中</span></div>
+        <div id="liveList" style="flex:1;overflow:hidden;font-size:13px"></div>
+      </div>
+      <div style="flex:1;padding:16px;background:#F7F8FC;display:flex;flex-direction:column;gap:10px;font-size:13.5px">
+        <div class="b-user" style="align-self:flex-end">ポイントで交換したギフトは返品できますか？</div>
+        <div class="b-ai"><span class="lbl">AI カスタマーサービス</span>ポイントで交換したギフトは原則として返品・交換の対象外です。ただし、初期不良の場合は 7 日以内にご連絡いただければ交換いたします。</div>
+        <div class="b-user" style="align-self:flex-end">箱が壊れていました…担当の方と話せますか？</div>
+        <div class="ok-banner" style="background:#FFF4E5;border-color:#FFD9A8;color:#9A5A00" id="hoBanner">🙋 有人切替 — 担当者が対応を引き継ぎました</div>
+        <div class="b-ai" style="border-color:#E2A35B"><span class="lbl" style="color:#B26A00">担当：佐藤</span>ご不便をおかけし申し訳ございません。お写真をお送りいただけますか？</div>
+      </div>
+      <div style="width:320px;border-left:1px solid #EEF0F6;padding:16px;font-size:13px;display:flex;flex-direction:column;gap:14px">
+        <div><b style="color:var(--navy)">AI タグ</b><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span class="tag b">返品・交換</span><span class="tag o">要フォロー</span><span class="tag g">ポイント</span></div></div>
+        <div><b style="color:var(--navy)">AI 要約</b><div class="seq" data-gap="300" data-start="1800" style="margin-top:8px;color:var(--sub);line-height:1.7"><div>・ポイント交換ギフトの返品可否を質問</div><div>・配送時の箱破損を申告</div><div>・有人対応を希望 → 担当者へ切替済み</div></div></div>
+        <div><b style="color:var(--navy)">顧客情報</b><div class="kv" style="font-size:12.5px"><span>会員ランク</span><b>ゴールド</b><span>購入回数</span><b>12 回</b><span>チャネル</span><b>LINE</b></div></div>
+        <span class="btn" style="text-align:center">✨ ナレッジを改善</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 26 AI 品質保証 -->
+<section class="slide">
+  <div class="pad">
+    <img class="a" src="assets/raccoon-logo.svg" style="height:56px">
+    <div class="a d1" style="font-size:40px;font-weight:900;color:var(--amber);margin-top:10px">AI 品質保証（AI レビュー）</div>
+    <div class="a d2" style="margin-top:40px;font-size:24px;line-height:2"><b style="color:var(--navy);font-size:28px">AI 最適化レビュー</b><br>・回答品質を自動でスコアリング<br>・具体的な改善提案を提示</div>
+    <span class="pill fill a d3" style="margin-top:24px;font-size:22px;padding:10px 34px">AI レビュー</span>
+  </div>
+  <div class="card a r d3" style="position:absolute;right:88px;top:80px;width:860px;padding:24px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><b style="color:var(--navy);font-size:18px">総合スコア</b><span class="big" style="font-size:44px;color:var(--green)"><span data-count="88">0</span><small style="font-size:18px;color:var(--sub)"> / 100</small></span></div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px">
+      <div class="card" style="padding:16px"><div style="color:var(--sub);font-size:14px">回答の関連性</div><div class="big" style="font-size:34px;margin:6px 0"><span data-count="9">0</span><small style="font-size:16px;color:var(--sub)">/10</small></div><div class="bar"><i data-w="90"></i></div></div>
+      <div class="card" style="padding:16px"><div style="color:var(--sub);font-size:14px">商品提案の適切さ</div><div class="big" style="font-size:34px;margin:6px 0"><span data-count="8">0</span><small style="font-size:16px;color:var(--sub)">/10</small></div><div class="bar"><i data-w="80"></i></div></div>
+      <div class="card" style="padding:16px"><div style="color:var(--sub);font-size:14px">言葉遣い・丁寧さ</div><div class="big" style="font-size:34px;margin:6px 0"><span data-count="10">0</span><small style="font-size:16px;color:var(--sub)">/10</small></div><div class="bar"><i data-w="100"></i></div></div>
+    </div>
+  </div>
+  <div class="card a r d5" style="position:absolute;right:88px;top:400px;width:860px;padding:24px;font-size:15px;line-height:1.8">
+    <div style="display:flex;gap:10px;align-items:center"><b style="color:var(--navy);font-size:18px">改善が必要な指標</b><span class="tag o">要改善</span></div>
+    <div style="margin-top:12px;background:#F7F8FC;border:1px solid #EAEDF6;border-radius:10px;padding:14px"><b>お客様：</b>カラーレンズは医療機器の認証を取っていますか？<br><b>AI：</b>当社のカラーレンズは承認済みの医療機器です…</div>
+    <div class="seq" data-gap="700" data-start="2200" style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+      <div>🔍 <b>評価：</b>認証の種類（国内承認か海外認証か）が明示されておらず、お客様の疑問に直接答えていません。</div>
+      <div style="color:var(--blue)">💡 <b>改善提案：</b>認証番号と取得国をナレッジに追加し、回答に含めるよう設定してください。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 27 導入企業の主要指標 -->
+<section class="slide" style="background:linear-gradient(135deg,#fff,#F2F5FF)">
+  <div class="pad" style="text-align:center">
+    <div class="kicker a" style="margin-top:80px">RESULTS</div>
+    <h1 class="t a d1">Raccoon AI 導入企業の主要指標</h1>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:100px">
+      <div class="a d2"><div class="big" style="font-size:130px"><span data-count="53">0</span><small style="font-size:50px">%</small></div><div style="font-size:24px;font-weight:700;margin-top:20px">営業時間外の会話</div></div>
+      <div class="a d3"><div class="big" style="font-size:130px"><span data-count="42">0</span><small style="font-size:50px">%</small></div><div style="font-size:24px;font-weight:700;margin-top:20px">購入前の相談</div></div>
+      <div class="a d4"><div class="big" style="font-size:130px"><span data-count="51">0</span><small style="font-size:50px">%</small></div><div style="font-size:24px;font-weight:700;margin-top:20px">AI スクリプトが<br>起動した会話</div></div>
+      <div class="a d5"><div class="big" style="font-size:130px;color:var(--amber)"><span data-count="80">0</span><small style="font-size:50px">%</small></div><div style="font-size:24px;font-weight:700;margin-top:20px">全導入企業の<br>AI 自己解決率</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 28 KEY METRICS -->
+<section class="slide">
+  <div class="pad">
+    <div style="display:flex;align-items:center;gap:30px" class="a"><img src="assets/raccoon-logo.svg" style="height:70px"><span style="font-family:'Noto Sans';font-weight:900;letter-spacing:.2em;font-size:34px;color:var(--navy)">KEY METRICS</span></div>
+  </div>
+  <div class="card a l d2" style="position:absolute;left:150px;top:220px;width:600px;padding:22px">
+    <span class="tag b" style="font-size:15px;padding:4px 14px">💊 健康食品</span> <span class="tag o" style="font-size:15px;padding:4px 14px">商品レコメンド</span>
+    <div class="b-ai" style="margin-top:14px;font-size:14px">あなたに合いそうなサプリメントはこちらです！</div>
+    <div class="prod" style="margin-top:10px"><div class="pc"><div class="im">💊</div><div class="tx"><b>マルチビタミン</b>毎日の健康維持に</div></div><div class="pc"><div class="im">🐟</div><div class="tx"><b>フィッシュオイル</b>DHA・EPA 配合</div></div></div>
+  </div>
+  <div class="card a r d3" style="position:absolute;left:850px;top:220px;width:600px;padding:22px">
+    <span class="tag b" style="font-size:15px;padding:4px 14px">🍼 ベビー・育児</span> <span class="tag o" style="font-size:15px;padding:4px 14px">注文追跡</span>
+    <div class="seq" data-gap="700" data-start="900" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;font-size:14px">
+      <div class="b-ai">注文番号のご提供ありがとうございます。</div>
+      <div class="b-ai">担当者におつなぎします…</div>
+      <div class="b-ai" style="background:#FDEBF3;border-color:#F7C6DB">返金のご申請が承認されました。</div>
+      <div class="b-ai" style="background:#FDEBF3;border-color:#F7C6DB">お受け取り時間をご確認ください。ありがとうございます！</div>
+    </div>
+  </div>
+  <div class="a d5" style="position:absolute;left:0;right:0;bottom:0;height:230px;background:var(--navy);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;color:#fff;padding:0 80px">
+    <div><div style="font-family:'Noto Sans';font-weight:900;font-size:56px"><span data-count="3600" data-sep>0</span><small style="font-size:26px">万</small></div><div style="font-size:20px;opacity:.85">累計会話数</div></div>
+    <div><div style="font-family:'Noto Sans';font-weight:900;font-size:56px"><span data-count="80">0</span>%</div><div style="font-size:20px;opacity:.85">AI 自己解決率</div></div>
+    <div><div style="font-family:'Noto Sans';font-weight:900;font-size:56px"><span data-count="85">0</span>%</div><div style="font-size:20px;opacity:.85">AI 顧客満足度（CSAT）</div></div>
+    <div><div style="font-family:'Noto Sans';font-weight:900;font-size:56px"><span data-count="100">0</span>+</div><div style="font-size:20px;opacity:.85">API 連携</div></div>
+  </div>
+</section>
+
+<!-- 29 導入業種 -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">CLIENTS</div>
+    <h1 class="t a d1">幅広い業界で導入</h1>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:50px">
+      <div class="card a d2" style="padding:30px;text-align:center"><div style="font-size:54px">💄</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">美容・健康</b><div style="color:var(--sub);margin-top:6px">化粧品・サプリメント・コンタクトレンズ</div></div>
+      <div class="card a d3" style="padding:30px;text-align:center"><div style="font-size:54px">👗</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">アパレル・雑貨</b><div style="color:var(--sub);margin-top:6px">ファッション・インナー・スポーツ</div></div>
+      <div class="card a d4" style="padding:30px;text-align:center"><div style="font-size:54px">🛒</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">その他 EC</b><div style="color:var(--sub);margin-top:6px">食品・ギフト・生活用品</div></div>
+      <div class="card a d5" style="padding:30px;text-align:center"><div style="font-size:54px">🏨</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">ホテル・不動産</b><div style="color:var(--sub);margin-top:6px">宿泊予約・物件案内</div></div>
+      <div class="card a d6" style="padding:30px;text-align:center"><div style="font-size:54px">📱</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">家電・ガジェット</b><div style="color:var(--sub);margin-top:6px">スマホアクセサリー・家電</div></div>
+      <div class="card a d7" style="padding:30px;text-align:center"><div style="font-size:54px">🎓</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">教育</b><div style="color:var(--sub);margin-top:6px">スクール・オンライン学習</div></div>
+      <div class="card a d8" style="padding:30px;text-align:center"><div style="font-size:54px">🐾</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">ペット</b><div style="color:var(--sub);margin-top:6px">ペット用品・フード</div></div>
+      <div class="card a d9" style="padding:30px;text-align:center"><div style="font-size:54px">🏦</div><b style="font-size:24px;color:var(--navy);display:block;margin-top:10px">その他</b><div style="color:var(--sub);margin-top:6px">金融・暗号資産・サービス業</div></div>
+    </div>
+  </div>
+  <div class="summary a d10">🌏 1,500 社以上のブランドが、6 市場で Raccoon AI を活用しています。</div>
+</section>
+
+<!-- 30 GEO 紹介 -->
+<section class="slide">
+  <div class="pad" style="text-align:center">
+    <div class="a" style="font-size:30px;font-weight:900;color:var(--amber);letter-spacing:.06em;margin-top:30px">カスタマーサービスの、その先へ</div>
+    <h1 class="t a d1" style="font-size:52px;margin-top:10px">Raccoon AI - GEO で <em>AI 検索を制する</em></h1>
+    <div class="lead a d2" style="font-size:24px">AI 検索での露出をモニタリングし、競合と GEO スコアを比較。</div>
+  </div>
+  <div class="card a d3" style="position:absolute;left:200px;right:200px;top:330px;padding:40px">
+    <div style="display:flex;gap:10px;margin-bottom:30px"><span class="tag b" style="font-size:14px;padding:4px 14px">ChatGPT</span><span class="tag b" style="font-size:14px;padding:4px 14px">Gemini</span><span class="tag b" style="font-size:14px;padding:4px 14px">Perplexity</span><span class="tag b" style="font-size:14px;padding:4px 14px">Google AI モード</span><span style="margin-left:auto;color:var(--sub)">AI 検索での言及率（ブランド別）</span></div>
+    <div style="display:flex;flex-direction:column;gap:34px;font-size:20px;font-weight:700">
+      <div style="display:grid;grid-template-columns:200px 1fr 70px;gap:16px;align-items:center"><span style="color:var(--blue)">★ 自社ブランド</span><div class="bar" style="height:26px"><i data-w="68"></i></div><span class="big" style="font-size:24px"><span data-count="68">0</span>%</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr 70px;gap:16px;align-items:center"><span>競合 A</span><div class="bar" style="height:26px"><i data-w="54" style="background:#B9C3E0"></i></div><span style="font-size:22px;color:var(--sub)">54%</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr 70px;gap:16px;align-items:center"><span>競合 B</span><div class="bar" style="height:26px"><i data-w="41" style="background:#B9C3E0"></i></div><span style="font-size:22px;color:var(--sub)">41%</span></div>
+      <div style="display:grid;grid-template-columns:200px 1fr 70px;gap:16px;align-items:center"><span>競合 C</span><div class="bar" style="height:26px"><i data-w="27" style="background:#B9C3E0"></i></div><span style="font-size:22px;color:var(--sub)">27%</span></div>
+    </div>
+    <div style="margin-top:28px;font-size:14px;color:#98A0BC">※ 画面はイメージです</div>
+  </div>
+</section>
+
+<!-- 31 GEO 記事生成 -->
+<section class="slide">
+  <div class="pad" style="text-align:center">
+    <div class="a" style="font-size:40px;font-weight:900;color:var(--amber);margin-top:30px">カスタマーサービス AI から生まれる<br>GEO 記事</div>
+    <div class="lead a d1" style="font-size:24px">顧客との会話を、生成エンジン最適化（AI SEO）のためのコンテンツインサイトへ。</div>
+    <div class="a d2" style="display:flex;gap:16px;justify-content:center;margin-top:24px"><span class="pill" style="font-size:20px">明確に定義</span><span class="pill" style="font-size:20px">それだけで完結</span><span class="pill" style="font-size:20px">意味が明快</span></div>
+  </div>
+  <div style="position:absolute;left:150px;right:150px;top:420px;display:grid;grid-template-columns:1fr 120px 1fr 120px 1fr;align-items:center">
+    <div class="card a d3" style="padding:24px;height:280px"><b style="color:var(--navy);font-size:20px">💬 顧客の会話</b><div class="seq" data-gap="500" data-start="1400" style="display:flex;flex-direction:column;gap:8px;margin-top:14px;font-size:14px"><div class="b-user" style="align-self:flex-start">敏感肌でも使える日焼け止めは？</div><div class="b-user" style="align-self:flex-start">子どもと一緒に使える？</div><div class="b-user" style="align-self:flex-start">落とすときはクレンジング必要？</div></div></div>
+    <div class="a d4" style="text-align:center;font-size:44px;color:var(--sky)">➜</div>
+    <div class="card a d5" style="padding:24px;height:280px"><b style="color:var(--navy);font-size:20px">🧠 AI が分析</b><div style="margin-top:14px;font-size:15px;line-height:2;color:var(--sub)">・よくある質問の傾向<br>・購入前の不安ポイント<br>・ブランドの強みとの対応</div></div>
+    <div class="a d6" style="text-align:center;font-size:44px;color:var(--sky)">➜</div>
+    <div class="card a d7" style="padding:24px;height:280px;border:2px solid var(--blue)"><b style="color:var(--navy);font-size:20px">📄 GEO 記事</b><div style="margin-top:14px;font-size:15px;line-height:1.9;color:var(--sub)"><b style="color:var(--ink)">「敏感肌向け日焼け止めの選び方 5 つのポイント」</b><br>AI に引用されやすい構造で自動生成</div></div>
+  </div>
+  <div class="card a d8" style="position:absolute;right:150px;bottom:40px;width:700px;padding:16px 22px;font-size:15px;line-height:1.8;background:var(--pale)">
+    <b>読者と AI の両方から引用されやすく：</b><br>・読者向け：信頼でき、分かりやすく、構造化されている<br>・AI 向け：明確で抽出しやすく、単独の情報としても使える
+  </div>
+</section>
+
+<!-- 32 GEO 記事構成 -->
+<section class="slide">
+  <div class="pad">
+    <img class="a" src="assets/raccoon-logo.svg" style="height:56px">
+    <div class="a d1" style="display:inline-block;margin-left:24px;vertical-align:top;background:var(--navy);color:#FFD36B;font-weight:900;font-size:24px;padding:10px 22px;border-radius:10px">会話を、AI 検索エンジンが引用できる GEO 記事へ</div>
+  </div>
+  <div style="position:absolute;left:88px;top:200px;width:300px;display:flex;flex-direction:column;gap:14px">
+    <div class="card a l d2" style="overflow:hidden"><div style="background:var(--navy);color:#fff;font-weight:700;padding:8px 14px">記事タイトル</div><div style="padding:10px 14px;color:var(--sub)">著者・日付・読了時間</div></div>
+    <div class="card a l d3" style="overflow:hidden"><div style="background:var(--navy);color:#fff;font-weight:700;padding:8px 14px">目次</div><div style="padding:10px 14px;color:var(--sub)">顧客起点の構成</div></div>
+    <div class="card a l d4" style="overflow:hidden"><div style="background:var(--navy);color:#fff;font-weight:700;padding:8px 14px">本文</div><div style="padding:10px 14px;color:var(--sub)">AI が読み取りやすい構造に、ブランドの専門性を組み込み</div></div>
+    <div class="card a l d5" style="overflow:hidden"><div style="background:var(--navy);color:#fff;font-weight:700;padding:8px 14px">まとめ</div><div style="padding:10px 14px;color:var(--sub)">結論の要約・推奨タグ</div></div>
+  </div>
+  <div class="card a d3" style="position:absolute;left:430px;right:88px;top:200px;height:600px;padding:34px 44px;overflow:hidden">
+    <div style="font-size:13px;color:var(--sub)">スキンケア ／ 2026.11.20 ／ 約 5 分で読めます</div>
+    <div style="font-size:30px;font-weight:900;color:var(--navy);margin-top:8px">敏感肌向け日焼け止めの選び方 ― 5 つのポイント</div>
+    <div style="margin-top:18px;background:#F7F8FC;border-radius:10px;padding:14px 18px;font-size:15px;line-height:1.9"><b>目次</b><br>1. 敏感肌が日焼け止めで気をつけたいこと　2. ノンケミカル処方とは<br>3. 子どもと一緒に使えるか　4. 落とし方　5. よくある質問</div>
+    <div class="seq" data-gap="600" data-start="1400" style="margin-top:18px;font-size:15.5px;line-height:1.9;color:#333">
+      <div><b style="color:var(--navy)">■ ノンケミカル処方とは</b><br>紫外線吸収剤を使わず、酸化亜鉛などの散乱剤で紫外線を防ぐ処方です。肌への刺激が少ないため、敏感肌の方に選ばれています。</div>
+      <div style="margin-top:8px"><b style="color:var(--navy)">■ よくある質問：クレンジングは必要？</b><br>石けんで落とせるタイプであれば、クレンジングは不要です。</div>
+      <div style="margin-top:8px;display:flex;gap:8px"><span class="tag b">#敏感肌</span><span class="tag b">#日焼け止め</span><span class="tag b">#ノンケミカル</span></div>
+    </div>
+  </div>
+  <div class="a d6" style="position:absolute;right:120px;bottom:70px;display:flex;gap:14px"><span class="pill fill">実際の顧客インサイト</span><span class="pill fill">GEO 最適化シグナル</span></div>
+  <div class="foot">※ GEO レポートの構成イメージです（デモ用）。</div>
+</section>
+
+<!-- 33 料金 -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">PRICING</div>
+    <h1 class="t a d1">Raccoon AI 料金プラン</h1>
+    <table class="price a d2" style="margin-top:24px">
+      <tr><th class="lh"></th><th>Growth</th><th>Pro</th><th>Enterprise</th></tr>
+      <tr><td>年間価格</td><td class="strike">¥1,575,000</td><td class="strike">¥3,600,000</td><td class="strike">¥7,050,000</td></tr>
+      <tr class="disc"><td>特別割引価格</td><td>¥1,200,000</td><td>¥2,700,000</td><td>¥5,250,000</td></tr>
+      <tr><td>年間 AI 対応会話数</td><td>18,000 会話</td><td>48,000 会話</td><td>108,000 会話</td></tr>
+      <tr><td>追加会話料金</td><td>¥90,000 / 1,000 会話</td><td>¥90,000 / 1,000 会話</td><td>¥90,000 / 1,000 会話</td></tr>
+      <tr><td>商品レコメンド</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+      <tr><td>注文状況トラッキング</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+      <tr><td>AI スクリプトエディター</td><td>¥300,000</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+      <tr><td>ライブモニタリング</td><td class="ck">✓</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+      <tr><td>AI ダッシュボード</td><td>基本データ</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+      <tr><td>AI レビュー</td><td class="x">—</td><td class="ck">✓</td><td class="ck">✓</td></tr>
+      <tr><td>追加ブランド</td><td>¥300,000</td><td>¥300,000</td><td>¥300,000</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 34 導入支援プラン -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker a">ONBOARDING</div>
+    <h1 class="t a d1">導入支援プラン</h1>
+    <div class="lead a d2" style="margin-top:6px">ブランドごとのスケジュールで、専任コンサルタントが 1 対 1 で伴走。チェックリストに沿って段階的に進めます。</div>
+  </div>
+  <div class="a d2" style="position:absolute;left:88px;right:88px;top:222px;height:8px;background:#E7EBF6;border-radius:99px;overflow:hidden"><div id="obBar" style="height:100%;width:0;background:linear-gradient(90deg,var(--sky),var(--blue));transition:width 3.5s var(--ease)"></div></div>
+  <div class="stg a d3" style="left:88px;width:270px"><div class="hd">STAGE 0<small>1〜5 日目</small></div><div class="card bd"><b>構成整理・マッピング・初期設定</b>FAQ、会員制度、キャンペーンルール、返品・交換ポリシー、商品ナレッジ</div></div>
+  <div class="stg a d4" style="left:378px;width:270px"><div class="hd">STAGE 1<small>6〜14 日目</small></div><div class="card bd"><b>会話ロジックの構築</b>回答トーン・会話スタイルのすり合わせ、会話ロジックのトレーニング</div></div>
+  <div class="stg a d5" style="left:668px;width:270px"><div class="hd">STAGE 2<small>15〜38 日目</small></div><div class="card bd"><b>各種設定</b>テスト環境、チャネル連携、ウェルカムメッセージ、標準レポート</div></div>
+  <div class="stg a d6" style="left:958px;width:270px"><div class="hd">STAGE 3<small>39〜45 日目</small></div><div class="card bd"><b>FAQ ロジック検証・EC モジュールテスト</b>本番環境に影響を与えずに、公開前の準備状況を確認</div></div>
+  <div class="stg a d7" style="left:1248px;width:264px"><div class="hd" style="background:var(--amber)">LAUNCH 🚀<small>公開</small></div><div class="card bd"><b>本番公開・分析開始</b>ウィジェット・SNS チャネル設置、自動タグ付け、会話分類、ダッシュボード</div></div>
+  <div class="summary a d9" style="bottom:60px">⏱ 約 <b>45 日</b>で本番公開。※ 料金はサービス範囲に応じてお見積もりいたします。</div>
+</section>
+
+</div>
+
+<div id="nav"><button id="prev" title="前へ">‹</button><span id="cnt">1 / 1</span><button id="next" title="次へ">›</button><button id="fs" title="全画面">⛶</button></div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let cur=0, timers=[];
+const N=slides.length;
+// page numbers + footer
+slides.forEach((s,i)=>{ if(i>0){const p=document.createElement('div');p.className='pg';p.textContent=(i+1)+' / '+N;s.appendChild(p);
+  if(!s.querySelector('img[src*="raccoon-logo"]')){const b=document.createElement('img');b.src='assets/raccoon-logo.svg';b.className='brandbar';s.appendChild(b);} }});
+
+function fit(){const st=document.getElementById('stage');const k=Math.min(innerWidth/1600,innerHeight/900);st.style.transform=`translate(-50%,-50%) scale(${k})`;}
+addEventListener('resize',fit);fit();
+
+function clearT(){timers.forEach(clearTimeout);timers=[];}
+function later(fn,ms){timers.push(setTimeout(fn,ms));}
+
+function countUp(el){
+  const to=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),sep=el.hasAttribute('data-sep');
+  const t0=performance.now(),dur=1600;
+  (function step(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);let v=(to*e).toFixed(dec);
+    if(sep)v=Number(v).toLocaleString('ja-JP',{minimumFractionDigits:dec,maximumFractionDigits:dec});el.textContent=v;
+    if(p<1&&el.closest('.slide.active'))requestAnimationFrame(step);else if(p>=1)el.textContent=sep?Number(to).toLocaleString('ja-JP'):to.toFixed(dec);})(t0);
+}
+
+function reset(s){
+  s.querySelectorAll('[data-count]').forEach(e=>e.textContent='0');
+  s.querySelectorAll('.bar>i').forEach(e=>e.style.width='0');
+  s.querySelectorAll('.seq>*').forEach(e=>{e.classList.remove('on');e.style.display='';});
+  s.querySelectorAll('.btn').forEach(b=>b.classList.remove('click'));
+}
+
+function play(s,idx){
+  later(()=>s.querySelectorAll('[data-count]').forEach(countUp),500);
+  later(()=>s.querySelectorAll('.bar>i').forEach(e=>e.style.width=e.dataset.w+'%'),600);
+  s.querySelectorAll('.seq').forEach(seq=>{
+    const gap=+(seq.dataset.gap||800),start=+(seq.dataset.start||700);
+    [...seq.children].forEach((c,i)=>{
+      later(()=>{
+        // a typing indicator disappears once the next item shows
+        const prev=c.previousElementSibling;
+        if(prev&&prev.querySelector&&(prev.classList.contains('typing')||prev.querySelector(':scope > .typing')))prev.style.display='none';
+        c.classList.add('on');
+        c.querySelectorAll('[data-count]').forEach(countUp);
+        const b=c.querySelector('#approve1,#approve2');
+        if(b)later(()=>b.classList.add('click'),gap*0.8);
+      },start+i*gap);
+    });
+  });
+  const ob=s.querySelector('#obBar'); if(ob){ob.style.width='0';later(()=>ob.style.width='100%',400);}
+  if(s.querySelector('#liveList'))live(s);
+  if(s.querySelector('#donut'))donut(s);
+}
+
+function go(n){
+  n=Math.max(0,Math.min(N-1,n));
+  clearT();
+  slides[cur].classList.remove('active');
+  reset(slides[n]);
+  cur=n;
+  void slides[n].offsetWidth;
+  slides[n].classList.add('active');
+  play(slides[n],n);
+  document.getElementById('cnt').textContent=(n+1)+' / '+N;
+  document.getElementById('prog').style.width=((n+1)/N*100)+'%';
+  history.replaceState(null,'','#'+(n+1));
+}
+addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();go(cur+1);}
+  if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();go(cur-1);}
+  if(e.key==='Home')go(0); if(e.key==='End')go(N-1);
+  if(e.key==='f')toggleFS(); if(e.key==='r')go(cur);
+});
+document.getElementById('prev').onclick=()=>go(cur-1);
+document.getElementById('next').onclick=()=>go(cur+1);
+function toggleFS(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
+document.getElementById('fs').onclick=toggleFS;
+document.getElementById('stage').addEventListener('click',e=>{if(e.target.closest('#nav'))return;(e.clientX>innerWidth/3)?go(cur+1):go(cur-1);});
+let tx=0;addEventListener('touchstart',e=>tx=e.touches[0].clientX);addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(cur+(d<0?1:-1));});
+
+/* ---- flow builder clutter (slide 18) ---- */
+(function(){
+  function build(id,dark){const box=document.getElementById(id);const W=690,H=560;let html=`<svg width="${W}" height="${H}" style="position:absolute;inset:0">`;const nodes=[];
+    const labels=['開始','挨拶','条件分岐','FAQ 判定','注文番号?','はい','いいえ','再入力','担当者へ','API 呼出','エラー','分岐 A','分岐 B','分岐 C','終了','フォーム','確認','キャンセル','返品?','サイズ?','在庫?','再提案','タグ付与','満足度'];
+    for(let i=0;i<34;i++){const x=20+((i*137)%(W-120)),y=20+Math.floor(i/5)*75+((i*53)%30);nodes.push([x,y]);}
+    nodes.forEach((n,i)=>{[i+1,i+5,i+7].forEach(j=>{if(nodes[j]&&(i*j)%3!==0){const m=nodes[j];html+=`<path d="M${n[0]+40} ${n[1]+12} C ${n[0]+40} ${n[1]+50}, ${m[0]+40} ${m[1]-30}, ${m[0]+40} ${m[1]}" stroke="${dark?'#4A5A8A':'#B9C3E0'}" fill="none" class="draw" style="--len:400;transition-delay:${(i*0.04).toFixed(2)}s"/>`;}});});
+    html+='</svg>';
+    nodes.forEach((n,i)=>{html+=`<div class="fnode" style="left:${n[0]}px;top:${n[1]}px;opacity:0;transition:opacity .3s ${(0.3+i*0.05).toFixed(2)}s">${labels[i%labels.length]}</div>`;});
+    box.innerHTML=html+`<div style="position:absolute;right:16px;bottom:14px;font-weight:900;font-size:22px;color:var(--red);transform:rotate(-6deg);background:${dark?'#1A2340':'#fff'};padding:4px 12px;border:3px solid var(--red);border-radius:8px">分岐 200 以上…</div>`;
+  }
+  build('flowA',false);build('flowB',true);
+  const obs=new MutationObserver(()=>{document.querySelectorAll('#flowA .fnode,#flowB .fnode').forEach(n=>n.style.opacity=n.closest('.slide.active')?1:0);});
+  slides.forEach(s=>obs.observe(s,{attributes:true,attributeFilter:['class']}));
+})();
+
+/* ---- size table (slide 21) ---- */
+(function(){const t=document.getElementById('sizeT');const items=['ブリーズ ショーツ','シームレス ブラ','ベルベット レギンス'];const sz=['S','M','L','XL'];let r='';
+  items.forEach((it,a)=>sz.forEach((s,b)=>{const hl=(a===0&&s==='M')?' style="background:#E5ECFF;font-weight:700"':'';r+=`<tr${hl}><td>${it}</td><td>${s}</td><td>${58+b*8}–${66+b*8}</td><td>${86+b*8}–${94+b*8}</td><td>${95+b*3}</td></tr>`;}));t.insertAdjacentHTML('beforeend',r);})();
+
+/* ---- donut (slide 24) ---- */
+function donut(s){const data=[['商品',28.6,'#C9A4F2'],['店舗',25.7,'#3557D6'],['返品・返金',21.4,'#9DB4F5'],['キャンペーン',14.3,'#F2A516'],['その他',10,'#F7C6DB']];
+  const svg=s.querySelector('#donut'),lg=s.querySelector('#donutLg');const R=70,C=2*Math.PI*R;let off=0,h='';
+  data.forEach(([n,v,c],i)=>{const len=C*v/100;h+=`<circle cx="100" cy="100" r="${R}" fill="none" stroke="${c}" stroke-width="40" stroke-dasharray="0 ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 100 100)" style="transition:stroke-dasharray 1s ${0.3+i*0.25}s ease" data-l="${len}"/>`;off+=len;});
+  svg.innerHTML=h;lg.innerHTML=data.map(([n,v,c])=>`<div><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:${c};margin-right:8px;vertical-align:-2px"></span>${n}<b style="float:right;font-family:'Noto Sans'">${v}%</b></div>`).join('');
+  later(()=>svg.querySelectorAll('circle').forEach(c=>c.setAttribute('stroke-dasharray',`${c.dataset.l} ${C}`)),100);}
+
+/* ---- live list (slide 25) ---- */
+function live(s){const box=s.querySelector('#liveList');const pool=[['ゲスト 4821','送料はいくらですか？','AI 対応中','b'],['田中 様','サイズ交換をしたい','有人対応','o'],['ゲスト 1173','クーポンが使えない','AI 対応中','b'],['山本 様','ポイント交換ギフトの返品','有人対応','o'],['ゲスト 9035','店舗の営業時間は？','解決済み','g'],['佐々木 様','在庫の入荷予定は？','AI 対応中','b'],['ゲスト 5560','注文のキャンセル','解決済み','g'],['伊藤 様','ギフト包装はできますか？','AI 対応中','b']];
+  box.innerHTML='';let i=0;
+  function add(seed){const p=pool[i%pool.length];const d=document.createElement('div');d.style.cssText='padding:10px 14px;border-bottom:1px solid #EEF0F6;display:flex;gap:10px;align-items:center;opacity:0;transform:translateY(-10px);transition:all .4s';
+    d.innerHTML=`<span style="width:30px;height:30px;border-radius:50%;background:#E5ECFF;display:grid;place-items:center">👤</span><div style="flex:1;min-width:0"><b>${p[0]}</b><div style="color:#98A0BC;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p[1]}</div></div><span class="tag ${p[3]}">${p[2]}</span>`;
+    box.prepend(d);requestAnimationFrame(()=>{d.style.opacity=1;d.style.transform='none';});while(box.children.length>9)box.lastChild.remove();i++;if(!seed)later(()=>add(false),1400);}
+  for(let k=0;k<5;k++)add(true);
+  [...box.children].forEach(c=>{c.style.opacity=1;c.style.transform='none'});
+  later(()=>add(false),1200);
+}
+
+go(Math.max(0,(parseInt(location.hash.slice(1))||1)-1));
+</script>
+</body>
+</html>
