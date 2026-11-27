@@ -1,0 +1,30 @@
+{
+  "client": "KICKS LAB.",
+  "updated_at": "2026-11-26T16:40:00+09:00",
+  "period": {"from": "2026-11-16", "to": "2026-11-24", "note": "本番環境（Web ウィジェット）のみ・日本時間・お客様の最初の発言時刻で集計"},
+  "source": "AI接客実績レポート（修正版 2026-11-26）",
+  "conversations": {"total": 274, "button": 246, "other": 28},
+  "links": {
+    "button": {"conversations": 246, "with_link": 238, "same_product": 235, "other_product": 3, "no_link": 8},
+    "other":  {"conversations": 28,  "with_link": 9,   "same_product": 3,   "other_product": 6, "no_link": 19}
+  },
+  "orders": {
+    "count": 4, "amount_jpy": 103126, "utm_confirmed": 1,
+    "items": [
+      {"date": "2026-11-21", "product": "KEEN JASPER NXIS RIDGE", "amount_jpy": 37126, "match": "utm", "note": "注文に同モデルのウィメンズ1点を含む（金額は注文全体）"},
+      {"date": "2026-11-22", "product": "ON CLOUDTILT 1 W", "amount_jpy": 23100, "match": "time"},
+      {"date": "2026-11-23", "product": "SALOMON XA PRO 3D", "amount_jpy": 19800, "match": "time"},
+      {"date": "2026-11-23", "product": "ON CLOUDMONSTER VOID", "amount_jpy": 23100, "match": "time"}
+    ]
+  },
+  "settings": [
+    {"name": "ウェルカムメッセージのクイック選択肢", "status": "off"},
+    {"name": "会話中の「次の質問候補」表示", "status": "off"},
+    {"name": "在庫切れ・サイズ不一致時の代替提案ルール", "status": "unset"},
+    {"name": "スタッフ試着データ（サイズ感）", "status": "partial"}
+  ],
+  "unavailable": [
+    {"metric": "リンクのクリック数", "reason": "Zendesk ウィジェットの商品リンクはストアへ直接遷移するため、Raccoon 側では取得できません"},
+    {"metric": "カート追加・チェックアウト離脱", "reason": "Shopify 側のイベントのため、Shopify アナリティクス（UTM ソース raccoon_ai）でご確認ください"}
+  ]
+}

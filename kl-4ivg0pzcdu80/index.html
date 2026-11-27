@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>KICKS LAB. AI 接客ダッシュボード｜Raccoon AI</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1F2937;--ink2:#4B5563;--muted:#6B7280;--line:#E5E7EB;--bg:#F7F8FA;--card:#fff;--brand:#142572;--brand2:#6B96EC;--neutral:#C9CED6;--good:#0F7B4C;--warn:#B45309}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.6}
+header{background:#fff;border-bottom:1px solid var(--line);padding:16px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header img{height:28px}
+header h1{font-size:18px;margin:0;font-weight:700}
+.meta{margin-left:auto;color:var(--muted);font-size:12px;text-align:right}
+.live{display:inline-flex;align-items:center;gap:6px;font-weight:500;color:var(--ink2)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
+.dot.stale{background:var(--warn)}
+main{max-width:1180px;margin:0 auto;padding:24px 28px 48px}
+.period{color:var(--ink2);margin:0 0 18px}
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(4,1fr)}
+.two{grid-template-columns:1fr 1fr}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.card h2{font-size:15px;margin:0 0 4px}
+.card .sub{color:var(--muted);font-size:12px;margin:0 0 14px}
+.kpi .label{color:var(--ink2);font-size:13px}
+.kpi .num{font-size:32px;font-weight:700;letter-spacing:-.5px;margin:2px 0}
+.kpi .num small{font-size:15px;font-weight:500;margin-left:2px}
+.kpi .foot{color:var(--muted);font-size:12px}
+section{margin-top:16px}
+/* stacked bar */
+.sbar{display:flex;gap:2px;height:34px;margin:8px 0 10px}
+.sbar div{height:100%;position:relative}
+.sbar div:first-child{border-radius:4px 0 0 4px}.sbar div:last-child{border-radius:0 4px 4px 0}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+/* bars */
+.row{display:grid;grid-template-columns:185px 1fr 56px;align-items:center;gap:10px;margin:8px 0;font-size:13px}
+.track{height:14px;background:transparent;position:relative}
+.fill{height:100%;background:var(--brand);border-radius:0 4px 4px 0;min-width:2px}
+.fill.alt{background:var(--brand2)}
+.val{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.grp{font-size:12px;color:var(--muted);margin-top:12px;font-weight:500}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--muted);font-weight:500;font-size:12px}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+tfoot td{font-weight:700;border-bottom:none}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);white-space:nowrap}
+.tag.utm{border-color:var(--brand);color:var(--brand)}
+.st{font-size:12px;white-space:nowrap}
+.st.off::before{content:"○ ";color:var(--muted)}
+.st.unset::before{content:"△ ";color:var(--warn)}
+.st.partial::before{content:"◐ ";color:var(--brand2)}
+.st.on::before{content:"● ";color:var(--good)}
+.na{border-left:3px solid var(--neutral);padding:4px 0 4px 12px;margin:10px 0}
+.na b{display:block;font-size:13px}.na span{font-size:12px;color:var(--ink2)}
+.tip{position:fixed;pointer-events:none;background:#111827;color:#fff;font-size:12px;padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .1s;z-index:9}
+footer{color:var(--muted);font-size:11.5px;margin-top:22px;line-height:1.7}
+.err{background:#FFF4E0;border:1px solid #F3D19C;padding:10px 14px;border-radius:8px;display:none;margin-bottom:14px}
+</style>
+</head>
+<body>
+<header>
+  <img src="favicon.svg" alt="Raccoon AI">
+  <h1>KICKS LAB. 様　AI 接客ダッシュボード</h1>
+  <div class="meta">
+    <div class="live"><span class="dot" id="dot"></span><span id="liveText">データ更新：—</span></div>
+    <div>5分ごとに自動で最新データを読み込みます</div>
+  </div>
+</header>
+<main>
+  <div class="err" id="err">最新データを読み込めませんでした。前回のデータを表示しています。</div>
+  <p class="period" id="period"></p>
+
+  <div class="grid kpis">
+    <div class="card kpi"><div class="label">お客様の発言があった会話</div><div class="num" id="k1"></div><div class="foot" id="k1f"></div></div>
+    <div class="card kpi"><div class="label">商品リンクを添えた会話</div><div class="num" id="k2"></div><div class="foot" id="k2f"></div></div>
+    <div class="card kpi"><div class="label">別の商品・複数商品をご提案</div><div class="num" id="k3"></div><div class="foot" id="k3f"></div></div>
+    <div class="card kpi"><div class="label">サイズ相談のあとのご購入</div><div class="num" id="k4"></div><div class="foot" id="k4f"></div></div>
+  </div>
+
+  <section class="grid two">
+    <div class="card">
+      <h2>会話の入口</h2>
+      <p class="sub">「サイズにお困りの方はこちら」ボタン起点か、それ以外か</p>
+      <div class="sbar" id="entry"></div>
+      <div class="legend" id="entryLegend"></div>
+    </div>
+    <div class="card">
+      <h2>AI が添えた商品リンクの中身</h2>
+      <p class="sub">会話数（入口別）</p>
+      <div id="linkBars"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>サイズ相談のあとのご購入（Shopify 注文データとの照合）</h2>
+    <p class="sub">AI がリンクを添えた商品を、会話のあとすぐにご購入いただいた注文。時刻と商品ページで照合できたもののみ（最低限の件数）</p>
+    <table>
+      <thead><tr><th>注文日</th><th>ご購入商品（AI がご案内した商品）</th><th class="r">注文金額（税・送料込）</th><th>照合方法</th></tr></thead>
+      <tbody id="orders"></tbody>
+      <tfoot><tr><td>合計</td><td id="ordCount"></td><td class="r" id="ordSum"></td><td></td></tr></tfoot>
+    </table>
+  </section>
+
+  <section class="grid two">
+    <div class="card">
+      <h2>ボタン以外の商品相談を増やす設定</h2>
+      <p class="sub">現在の KICKS LAB. 様の設定状況</p>
+      <table><tbody id="settings"></tbody></table>
+    </div>
+    <div class="card">
+      <h2>Raccoon 側で取得できない指標</h2>
+      <p class="sub">Shopify アナリティクスでのご確認をお願いします</p>
+      <div id="na"></div>
+    </div>
+  </section>
+
+  <footer id="foot"></footer>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+const REFRESH_MS = 5*60*1000, STALE_H = 36;
+const yen = n => "¥" + n.toLocaleString("ja-JP");
+const pct = (a,b) => b ? (a/b*100).toFixed(1) + "%" : "—";
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tip = $("tip");
+function hover(el, text){
+  el.addEventListener("mousemove", e => {tip.textContent = text; tip.style.left = (e.clientX+12)+"px"; tip.style.top = (e.clientY+12)+"px"; tip.style.opacity = 1;});
+  el.addEventListener("mouseleave", () => tip.style.opacity = 0);
+}
+const STATUS = {on:"オン", off:"オフ", unset:"未設定", partial:"一部の商品のみ"};
+const MATCH = {utm:["AI のリンク経由の訪問を確認","utm"], time:["会話後 1〜30分以内に同じ商品ページを訪問しご購入",""]};
+
+function render(d){
+  const c = d.conversations, L = d.links, o = d.orders;
+  const withLink = L.button.with_link + L.other.with_link;
+  const otherProd = L.button.other_product + L.other.other_product;
+  $("period").textContent = `集計期間：${d.period.from.replaceAll("-","/")} 〜 ${d.period.to.replaceAll("-","/")}　／　${d.period.note}`;
+  $("k1").innerHTML = `${c.total}<small>件</small>`; $("k1f").textContent = `うちボタン起点 ${c.button}件（${pct(c.button,c.total)}）`;
+  $("k2").innerHTML = `${withLink}<small>件</small>`; $("k2f").textContent = `全会話の ${pct(withLink,c.total)}`;
+  $("k3").innerHTML = `${otherProd}<small>件</small>`; $("k3f").textContent = `全会話の ${pct(otherProd,c.total)}`;
+  $("k4").innerHTML = `${o.count}<small>件</small>`; $("k4f").textContent = `計 ${yen(o.amount_jpy)}（うち AI リンク経由確認 ${o.utm_confirmed}件）`;
+
+  // entry stacked bar
+  const seg = [["ボタン起点", c.button, "var(--brand)"], ["それ以外", c.other, "var(--neutral)"]];
+  $("entry").innerHTML = ""; $("entryLegend").innerHTML = "";
+  seg.forEach(([n,v,col]) => {
+    const div = document.createElement("div"); div.style.flex = v; div.style.background = col;
+    hover(div, `${n}：${v}件（${pct(v,c.total)}）`); $("entry").appendChild(div);
+    $("entryLegend").insertAdjacentHTML("beforeend", `<span><i style="background:${col}"></i>${n}　${v}件（${pct(v,c.total)}）</span>`);
+  });
+
+  // link bars
+  const max = Math.max(L.button.conversations, L.other.conversations);
+  const rows = (g, label) => `<div class="grp">${label}（${g.conversations}件）</div>` + [
+    ["閲覧中・指定の商品のみ", g.same_product, ""],
+    ["別の商品・複数商品を提案", g.other_product, "alt"],
+    ["リンクなし", g.no_link, "na2"]].map(([n,v,cls]) =>
+    `<div class="row" data-t="${label}｜${n}：${v}件（${pct(v,g.conversations)}）"><span>${n}</span><div class="track"><div class="fill ${cls}" style="width:${v/max*100}%;${cls==="na2"?"background:var(--neutral)":""}"></div></div><span class="val">${v}件</span></div>`).join("");
+  $("linkBars").innerHTML = rows(L.button, "ボタン起点") + rows(L.other, "それ以外");
+  $("linkBars").querySelectorAll(".row").forEach(r => hover(r, r.dataset.t));
+
+  // orders
+  $("orders").innerHTML = o.items.map(i => {
+    const [m, cls] = MATCH[i.match] || [i.match, ""];
+    return `<tr><td>${esc(i.date.slice(5).replace("-","/"))}</td><td>${esc(i.product)}${i.note?`<div style="font-size:11.5px;color:var(--muted)">${esc(i.note)}</div>`:""}</td><td class="r">${yen(i.amount_jpy)}</td><td><span class="tag ${cls}">${m}</span></td></tr>`;
+  }).join("");
+  $("ordCount").textContent = `${o.count}件`; $("ordSum").textContent = yen(o.amount_jpy);
+
+  $("settings").innerHTML = d.settings.map(s => `<tr><td>${esc(s.name)}</td><td class="r"><span class="st ${s.status}">${STATUS[s.status]||esc(s.status)}</span></td></tr>`).join("");
+  $("na").innerHTML = d.unavailable.map(u => `<div class="na"><b>${esc(u.metric)}</b><span>${esc(u.reason)}</span></div>`).join("");
+
+  const t = new Date(d.updated_at);
+  const stale = (Date.now() - t) / 36e5 > STALE_H;
+  $("dot").classList.toggle("stale", stale);
+  $("liveText").textContent = `データ更新：${t.toLocaleString("ja-JP",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"})} JST${stale?"（更新待ち）":""}`;
+  $("foot").innerHTML = `出典：${esc(d.source)}。数値は Raccoon AI の会話ログ（本番環境）と、KICKS LAB. 様の Shopify 注文データ（連携アプリ経由）を照合したものです。ウェルカムメッセージのみの会話・本番公開前のテスト会話は除外しています。<br>本ページには注文番号・チケット番号・会話 ID・お客様の個人情報は含まれていません。　© Raccoon AI合同会社`;
+}
+
+async function load(){
+  try{
+    const r = await fetch("data.json?t=" + Date.now(), {cache:"no-store"});
+    if(!r.ok) throw new Error(r.status);
+    render(await r.json()); $("err").style.display = "none";
+  }catch(e){ $("err").style.display = "block"; }
+}
+load(); setInterval(load, REFRESH_MS);
+</script>
+</body>
+</html>
