@@ -6,60 +6,75 @@
 <meta name="robots" content="noindex,nofollow">
 <title>KICKS LAB. AI 接客ダッシュボード｜Raccoon AI</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1F2937;--ink2:#4B5563;--muted:#6B7280;--line:#E5E7EB;--bg:#F7F8FA;--card:#fff;--brand:#142572;--brand2:#6B96EC;--neutral:#C9CED6;--good:#0F7B4C;--warn:#B45309}
+:root{--ink:#1F2937;--ink2:#4B5563;--muted:#6B7280;--line:#E5E7EB;--bg:#F7F8FA;--card:#fff;--c-btn:#142572;--c-oth:#6B96EC;--c-alt:#D9771E;--c-none:#C9CED6;--good:#0F7B4C;--warn:#B45309}
 *{box-sizing:border-box}
 body{margin:0;font-family:"Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.6}
-header{background:#fff;border-bottom:1px solid var(--line);padding:16px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+html[lang="zh-Hant"] body{font-family:"Noto Sans TC","Noto Sans JP",sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 header img{height:28px}
 header h1{font-size:18px;margin:0;font-weight:700}
-.meta{margin-left:auto;color:var(--muted);font-size:12px;text-align:right}
+.hright{margin-left:auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.meta{color:var(--muted);font-size:12px;text-align:right}
 .live{display:inline-flex;align-items:center;gap:6px;font-weight:500;color:var(--ink2)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
-.dot.stale{background:var(--warn)}
-main{max-width:1180px;margin:0 auto;padding:24px 28px 48px}
-.period{color:var(--ink2);margin:0 0 18px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}.dot.stale{background:var(--warn)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:#fff;padding:6px 12px;font:inherit;font-size:13px;color:var(--ink2);cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--c-btn);color:#fff}
+main{max-width:1180px;margin:0 auto;padding:20px 28px 48px}
+.filters{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:16px}
+.filters label{font-size:13px;color:var(--ink2)}
+.filters input[type=date]{font:inherit;font-size:13px;padding:5px 8px;border:1px solid var(--line);border-radius:6px;color:var(--ink)}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 12px;font:inherit;font-size:12.5px;color:var(--ink2);cursor:pointer}
+.chip.on{border-color:var(--c-btn);color:var(--c-btn);font-weight:500}
+.chk{display:inline-flex;align-items:center;gap:6px;margin-left:auto;font-size:13px;color:var(--ink2);cursor:pointer}
+.note{background:#FFF8EC;border:1px solid #F3D9A8;border-radius:8px;padding:9px 14px;font-size:13px;color:#7A4B00;margin-bottom:14px;display:none}
 .grid{display:grid;gap:16px}
 .kpis{grid-template-columns:repeat(4,1fr)}
 .two{grid-template-columns:1fr 1fr}
-@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.chk{margin-left:0}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
-.card h2{font-size:15px;margin:0 0 4px}
+.card h2{font-size:15px;margin:0 0 2px}
 .card .sub{color:var(--muted);font-size:12px;margin:0 0 14px}
 .kpi .label{color:var(--ink2);font-size:13px}
 .kpi .num{font-size:32px;font-weight:700;letter-spacing:-.5px;margin:2px 0}
 .kpi .num small{font-size:15px;font-weight:500;margin-left:2px}
 .kpi .foot{color:var(--muted);font-size:12px}
 section{margin-top:16px}
-/* stacked bar */
 .sbar{display:flex;gap:2px;height:34px;margin:8px 0 10px}
-.sbar div{height:100%;position:relative}
 .sbar div:first-child{border-radius:4px 0 0 4px}.sbar div:last-child{border-radius:0 4px 4px 0}
 .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink2)}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
-/* bars */
-.row{display:grid;grid-template-columns:185px 1fr 56px;align-items:center;gap:10px;margin:8px 0;font-size:13px}
-.track{height:14px;background:transparent;position:relative}
-.fill{height:100%;background:var(--brand);border-radius:0 4px 4px 0;min-width:2px}
-.fill.alt{background:var(--brand2)}
-.val{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
+.row{display:grid;grid-template-columns:190px 1fr 56px;align-items:center;gap:10px;margin:7px 0;font-size:13px}
+.track{height:14px}
+.fill{height:100%;border-radius:0 4px 4px 0;min-width:2px}
+.val{text-align:right;font-variant-numeric:tabular-nums}
 .grp{font-size:12px;color:var(--muted);margin-top:12px;font-weight:500}
+.daily{display:flex;align-items:flex-end;gap:6px;height:180px;border-bottom:1px solid var(--line);padding-top:16px}
+.dcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;height:100%;position:relative;cursor:default}
+.dcol .s{width:100%}
+.dcol .s:first-child{border-radius:4px 4px 0 0}
+.dcol .s+.s{margin-top:2px}
+.dcol .n{font-size:11px;color:var(--ink2);text-align:center;margin-bottom:3px;font-variant-numeric:tabular-nums}
+.dlabels{display:flex;gap:6px;margin-top:6px}
+.dlabels span{flex:1;text-align:center;font-size:11px;color:var(--muted)}
+.empty{color:var(--muted);font-size:13px;padding:28px 0;text-align:center}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 th{color:var(--muted);font-weight:500;font-size:12px}
 td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
 tfoot td{font-weight:700;border-bottom:none}
-.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--ink2);white-space:nowrap}
-.tag.utm{border-color:var(--brand);color:var(--brand)}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--ink2)}
+.tag.utm{border-color:var(--c-btn);color:var(--c-btn)}
+.small{font-size:11.5px;color:var(--muted)}
 .st{font-size:12px;white-space:nowrap}
-.st.off::before{content:"○ ";color:var(--muted)}
-.st.unset::before{content:"△ ";color:var(--warn)}
-.st.partial::before{content:"◐ ";color:var(--brand2)}
-.st.on::before{content:"● ";color:var(--good)}
-.na{border-left:3px solid var(--neutral);padding:4px 0 4px 12px;margin:10px 0}
+.st.off::before{content:"○ ";color:var(--muted)}.st.unset::before{content:"△ ";color:var(--warn)}
+.st.partial::before{content:"◐ ";color:var(--c-oth)}.st.on::before{content:"● ";color:var(--good)}
+.na{border-left:3px solid var(--c-none);padding:4px 0 4px 12px;margin:10px 0}
 .na b{display:block;font-size:13px}.na span{font-size:12px;color:var(--ink2)}
-.tip{position:fixed;pointer-events:none;background:#111827;color:#fff;font-size:12px;padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .1s;z-index:9}
+.tip{position:fixed;pointer-events:none;background:#111827;color:#fff;font-size:12px;padding:6px 9px;border-radius:6px;opacity:0;transition:opacity .1s;z-index:9;max-width:320px}
 footer{color:var(--muted);font-size:11.5px;margin-top:22px;line-height:1.7}
 .err{background:#FFF4E0;border:1px solid #F3D19C;padding:10px 14px;border-radius:8px;display:none;margin-bottom:14px}
 </style>
@@ -67,56 +82,72 @@ footer{color:var(--muted);font-size:11.5px;margin-top:22px;line-height:1.7}
 <body>
 <header>
   <img src="favicon.svg" alt="Raccoon AI">
-  <h1>KICKS LAB. 様　AI 接客ダッシュボード</h1>
-  <div class="meta">
-    <div class="live"><span class="dot" id="dot"></span><span id="liveText">データ更新：—</span></div>
-    <div>5分ごとに自動で最新データを読み込みます</div>
+  <h1 data-i="title"></h1>
+  <div class="hright">
+    <div class="seg" id="lang"><button data-l="ja">日本語</button><button data-l="zh">中文</button></div>
+    <div class="meta">
+      <div class="live"><span class="dot" id="dot"></span><span id="liveText"></span></div>
+      <div data-i="autorefresh"></div>
+    </div>
   </div>
 </header>
 <main>
-  <div class="err" id="err">最新データを読み込めませんでした。前回のデータを表示しています。</div>
-  <p class="period" id="period"></p>
+  <div class="err" id="err" data-i="loadErr"></div>
+
+  <div class="filters">
+    <label data-i="period"></label>
+    <input type="date" id="dFrom"> <span>〜</span> <input type="date" id="dTo">
+    <span id="presets"></span>
+    <label class="chk"><input type="checkbox" id="exTest" checked> <span data-i="exTest"></span></label>
+  </div>
+  <div class="note" id="partial"></div>
 
   <div class="grid kpis">
-    <div class="card kpi"><div class="label">お客様の発言があった会話</div><div class="num" id="k1"></div><div class="foot" id="k1f"></div></div>
-    <div class="card kpi"><div class="label">商品リンクを添えた会話</div><div class="num" id="k2"></div><div class="foot" id="k2f"></div></div>
-    <div class="card kpi"><div class="label">別の商品・複数商品をご提案</div><div class="num" id="k3"></div><div class="foot" id="k3f"></div></div>
-    <div class="card kpi"><div class="label">サイズ相談のあとのご購入</div><div class="num" id="k4"></div><div class="foot" id="k4f"></div></div>
+    <div class="card kpi"><div class="label" data-i="k1"></div><div class="num" id="k1"></div><div class="foot" id="k1f"></div></div>
+    <div class="card kpi"><div class="label" data-i="k2"></div><div class="num" id="k2"></div><div class="foot" id="k2f"></div></div>
+    <div class="card kpi"><div class="label" data-i="k3"></div><div class="num" id="k3"></div><div class="foot" id="k3f"></div></div>
+    <div class="card kpi"><div class="label" data-i="k4"></div><div class="num" id="k4"></div><div class="foot" id="k4f"></div></div>
   </div>
+
+  <section class="card">
+    <h2 data-i="dailyT"></h2>
+    <p class="sub" data-i="dailyS"></p>
+    <div id="daily"></div>
+    <div class="legend" style="margin-top:10px" id="dailyLegend"></div>
+  </section>
 
   <section class="grid two">
     <div class="card">
-      <h2>会話の入口</h2>
-      <p class="sub">「サイズにお困りの方はこちら」ボタン起点か、それ以外か</p>
-      <div class="sbar" id="entry"></div>
-      <div class="legend" id="entryLegend"></div>
+      <h2 data-i="entryT"></h2>
+      <p class="sub" data-i="entryS"></p>
+      <div id="entryWrap"><div class="sbar" id="entry"></div><div class="legend" id="entryLegend"></div></div>
     </div>
     <div class="card">
-      <h2>AI が添えた商品リンクの中身</h2>
-      <p class="sub">会話数（入口別）</p>
+      <h2 data-i="linkT"></h2>
+      <p class="sub" data-i="linkS"></p>
       <div id="linkBars"></div>
     </div>
   </section>
 
   <section class="card">
-    <h2>サイズ相談のあとのご購入（Shopify 注文データとの照合）</h2>
-    <p class="sub">AI がリンクを添えた商品を、会話のあとすぐにご購入いただいた注文。時刻と商品ページで照合できたもののみ（最低限の件数）</p>
+    <h2 data-i="ordT"></h2>
+    <p class="sub" data-i="ordS"></p>
     <table>
-      <thead><tr><th>注文日</th><th>ご購入商品（AI がご案内した商品）</th><th class="r">注文金額（税・送料込）</th><th>照合方法</th></tr></thead>
+      <thead><tr><th data-i="thDate"></th><th data-i="thProd"></th><th class="r" data-i="thAmt"></th><th data-i="thMatch"></th></tr></thead>
       <tbody id="orders"></tbody>
-      <tfoot><tr><td>合計</td><td id="ordCount"></td><td class="r" id="ordSum"></td><td></td></tr></tfoot>
+      <tfoot><tr><td data-i="total"></td><td id="ordCount"></td><td class="r" id="ordSum"></td><td id="ordSplit"></td></tr></tfoot>
     </table>
   </section>
 
   <section class="grid two">
     <div class="card">
-      <h2>ボタン以外の商品相談を増やす設定</h2>
-      <p class="sub">現在の KICKS LAB. 様の設定状況</p>
+      <h2 data-i="setT"></h2>
+      <p class="sub" data-i="setS"></p>
       <table><tbody id="settings"></tbody></table>
     </div>
     <div class="card">
-      <h2>Raccoon 側で取得できない指標</h2>
-      <p class="sub">Shopify アナリティクスでのご確認をお願いします</p>
+      <h2 data-i="naT"></h2>
+      <p class="sub" data-i="naS"></p>
       <div id="na"></div>
     </div>
   </section>
@@ -125,73 +156,211 @@ footer{color:var(--muted);font-size:11.5px;margin-top:22px;line-height:1.7}
 </main>
 <div class="tip" id="tip"></div>
 <script>
+const I18N = {
+ ja: {
+  title:"KICKS LAB. 様　AI 接客ダッシュボード", autorefresh:"5分ごとに自動で最新データを読み込みます",
+  updated:"データ更新", pending:"（更新待ち）", loadErr:"最新データを読み込めませんでした。前回のデータを表示しています。",
+  period:"集計期間", all:"全期間", wk1:"公開〜11/24", wk2:"11/25〜12/2", last7:"直近7日",
+  exTest:"御社・KICKS LAB. 様の動作確認の会話を除く",
+  partial:"選択した期間の一部は日別の内訳がまだありません。会話の数値は {r} の合計で表示しています（ご購入・動作確認の件数は日別で反映）。",
+  noData:"選択した期間のデータはまだありません。",
+  k1:"お客様の発言があった会話", k1f:"うちボタン起点 {b}件（{p}）", k1t:"動作確認 {t}件を除外済み",
+  k2:"商品リンクを添えた会話", k2f:"全会話の {p}",
+  k3:"別の商品・複数商品をご提案", k3f:"全会話の {p}",
+  k4:"AI 会話のあとのご購入", k4f:"計 {a}（うち AI リンク経由 {u}件）",
+  dailyT:"日別の会話数", dailyS:"お客様の最初の発言日（日本時間）／ボタン起点とそれ以外",
+  dailyWait:"日別の内訳は準備中です（現在は期間合計のみ）。", btn:"ボタン起点", oth:"それ以外", tests:"動作確認",
+  entryT:"会話の入口", entryS:"「サイズにお困りの方はこちら」ボタン起点か、それ以外か",
+  linkT:"AI が添えた商品リンクの中身", linkS:"会話数（入口別）",
+  same:"閲覧中・指定の商品のみ", alt:"別の商品・複数商品を提案", none:"リンクなし",
+  testNote:"※動作確認の会話は内訳が不明のため、この表には含まれます（{t}件）",
+  ordT:"AI 会話のあとのご購入（Shopify 注文データとの照合）",
+  ordS:"AI がリンクを添えた商品を、会話のあとすぐにご購入いただいた注文。時刻と商品ページで照合できたもののみ（最低限の件数）",
+  thDate:"注文日", thProd:"ご購入商品（AI がご案内した商品）", thAmt:"注文金額（税・送料込）", thMatch:"照合方法", total:"合計",
+  mUtm:"AI のリンク経由", mTime:"会話後 30分以内に同じ商品ページを訪問しご購入",
+  split:"リンク経由 {u}件・それ以外 {o}件", noOrders:"この期間に照合できたご購入はありません。",
+  incl_other_item:"同じ注文に、お客様ご自身で選ばれた別の商品 1点を含みます（金額は注文全体）",
+  setT:"ボタン以外の商品相談を増やす設定", setS:"現在の KICKS LAB. 様の設定状況",
+  quick_reply:"ウェルカムメッセージのクイック選択肢", next_questions:"会話中の「次の質問候補」表示",
+  alt_rule:"在庫切れ・サイズ不一致時の代替提案ルール", fitting_data:"スタッフ試着データ（サイズ感）",
+  on:"オン", off:"オフ", unset:"未設定", partialSt:"一部の商品のみ",
+  naT:"Raccoon 側で取得できない指標", naS:"Shopify アナリティクスでのご確認をお願いします",
+  na1:"リンクのクリック数", na1r:"Zendesk ウィジェットの商品リンクはストアへ直接遷移するため、Raccoon 側では取得できません",
+  na2:"カート追加・チェックアウト離脱", na2r:"Shopify 側のイベントのため、Shopify アナリティクス（UTM ソース raccoon_ai）でご確認ください",
+  foot:"数値は Raccoon AI の会話ログ（本番環境）と、KICKS LAB. 様の Shopify 注文データ（連携アプリ経由）を照合したものです。ウェルカムメッセージのみの会話・本番公開前のテスト会話は除外しています。<br>本ページには注文番号・チケット番号・会話 ID・お客様の個人情報は含まれていません。　© Raccoon AI合同会社",
+  unit:"件", lc:"ja-JP"
+ },
+ zh: {
+  title:"KICKS LAB. AI 客服成效儀表板", autorefresh:"每 5 分鐘自動讀取最新資料",
+  updated:"資料更新", pending:"（待更新）", loadErr:"無法讀取最新資料，目前顯示上一次的資料。",
+  period:"統計期間", all:"全部期間", wk1:"上線〜11/24", wk2:"11/25〜12/2", last7:"最近 7 天",
+  exTest:"排除 Eclect・KICKS LAB. 的測試會話",
+  partial:"所選期間中有部分日期尚無每日明細，會話數字以 {r} 的合計顯示（購買與測試件數依日期計算）。",
+  noData:"所選期間尚無資料。",
+  k1:"客人有發言的會話", k1f:"其中按鈕開始 {b} 件（{p}）", k1t:"已排除測試 {t} 件",
+  k2:"附上商品連結的會話", k2f:"佔全部會話 {p}",
+  k3:"推薦其他商品・多項商品", k3f:"佔全部會話 {p}",
+  k4:"AI 對話後的購買", k4f:"合計 {a}（其中經 AI 連結 {u} 件）",
+  dailyT:"每日會話數", dailyS:"客人第一句發言日期（日本時間）／按鈕開始與其他",
+  dailyWait:"每日明細準備中（目前只有期間合計）。", btn:"按鈕開始", oth:"其他", tests:"測試",
+  entryT:"會話入口", entryS:"從「サイズにお困りの方はこちら（尺寸諮詢）」按鈕開始，或其他",
+  linkT:"AI 附上的商品連結內容", linkS:"會話數（依入口）",
+  same:"只附正在看的・指定的商品", alt:"推薦其他商品・多項商品", none:"沒有連結",
+  testNote:"※測試會話無法拆分明細，因此本表包含在內（{t} 件）",
+  ordT:"AI 對話後的購買（與 Shopify 訂單資料比對）",
+  ordS:"客人在對話後立即購買 AI 附上連結的商品之訂單。只計算能以時間與商品頁比對的訂單（最低件數）",
+  thDate:"訂單日期", thProd:"購買商品（AI 介紹的商品）", thAmt:"訂單金額（含稅・運費）", thMatch:"比對方式", total:"合計",
+  mUtm:"經 AI 連結", mTime:"對話後 30 分鐘內造訪同一商品頁並購買",
+  split:"經連結 {u} 件・其他 {o} 件", noOrders:"此期間沒有比對到的購買。",
+  incl_other_item:"同一訂單含客人自行選購的另一件商品（金額為整筆訂單）",
+  setT:"增加按鈕以外商品諮詢的設定", setS:"KICKS LAB. 目前的設定狀況",
+  quick_reply:"歡迎訊息的快速選項", next_questions:"對話中的「下一個問題建議」",
+  alt_rule:"缺貨・尺寸不合時的替代推薦規則", fitting_data:"店員試穿資料（尺寸感）",
+  on:"開啟", off:"關閉", unset:"未設定", partialSt:"僅部分商品",
+  naT:"Raccoon 端無法取得的指標", naS:"請至 Shopify 數據分析確認",
+  na1:"連結點擊數", na1r:"Zendesk Widget 的商品連結直接跳轉至商店，Raccoon 端無法取得",
+  na2:"加入購物車・結帳流失", na2r:"屬於 Shopify 端事件，請在 Shopify 數據分析（UTM 來源 raccoon_ai）確認",
+  foot:"數字為 Raccoon AI 對話紀錄（正式環境）與 KICKS LAB. 的 Shopify 訂單資料（經串接 App）比對之結果；已排除僅有歡迎訊息的會話及上線前的測試會話。<br>本頁不含訂單號、工單號、會話 ID 及任何客人個人資料。　© Raccoon AI合同会社",
+  unit:"件", lc:"zh-TW"
+ }
+};
 const REFRESH_MS = 5*60*1000, STALE_H = 36;
-const yen = n => "¥" + n.toLocaleString("ja-JP");
-const pct = (a,b) => b ? (a/b*100).toFixed(1) + "%" : "—";
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (s, o) => s.replace(/\{(\w)\}/g, (_, k) => o[k]);
+const yen = n => "¥" + n.toLocaleString("ja-JP");
+const pct = (a,b) => b ? (a/b*100).toFixed(1) + "%" : "—";
+const md = s => s.slice(5).replace("-","/").replace(/^0/,"");
+const addDays = (s, n) => { const d = new Date(s+"T00:00:00Z"); d.setUTCDate(d.getUTCDate()+n); return d.toISOString().slice(0,10); };
 const tip = $("tip");
 function hover(el, text){
-  el.addEventListener("mousemove", e => {tip.textContent = text; tip.style.left = (e.clientX+12)+"px"; tip.style.top = (e.clientY+12)+"px"; tip.style.opacity = 1;});
-  el.addEventListener("mouseleave", () => tip.style.opacity = 0);
+  el.onmousemove = e => {tip.innerHTML = text; tip.style.left = Math.min(e.clientX+12, innerWidth-330)+"px"; tip.style.top = (e.clientY+12)+"px"; tip.style.opacity = 1;};
+  el.onmouseleave = () => tip.style.opacity = 0;
 }
-const STATUS = {on:"オン", off:"オフ", unset:"未設定", partial:"一部の商品のみ"};
-const MATCH = {utm:["AI のリンク経由の訪問を確認","utm"], time:["会話後 1〜30分以内に同じ商品ページを訪問しご購入",""]};
 
-function render(d){
-  const c = d.conversations, L = d.links, o = d.orders;
-  const withLink = L.button.with_link + L.other.with_link;
-  const otherProd = L.button.other_product + L.other.other_product;
-  $("period").textContent = `集計期間：${d.period.from.replaceAll("-","/")} 〜 ${d.period.to.replaceAll("-","/")}　／　${d.period.note}`;
-  $("k1").innerHTML = `${c.total}<small>件</small>`; $("k1f").textContent = `うちボタン起点 ${c.button}件（${pct(c.button,c.total)}）`;
-  $("k2").innerHTML = `${withLink}<small>件</small>`; $("k2f").textContent = `全会話の ${pct(withLink,c.total)}`;
-  $("k3").innerHTML = `${otherProd}<small>件</small>`; $("k3f").textContent = `全会話の ${pct(otherProd,c.total)}`;
-  $("k4").innerHTML = `${o.count}<small>件</small>`; $("k4f").textContent = `計 ${yen(o.amount_jpy)}（うち AI リンク経由確認 ${o.utm_confirmed}件）`;
+let lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("kl_lang") || "ja";
+if(!I18N[lang]) lang = "ja";
+let D = null, range = null, preset = "all";
+const T = k => I18N[lang][k] ?? k;
 
-  // entry stacked bar
-  const seg = [["ボタン起点", c.button, "var(--brand)"], ["それ以外", c.other, "var(--neutral)"]];
-  $("entry").innerHTML = ""; $("entryLegend").innerHTML = "";
-  seg.forEach(([n,v,col]) => {
-    const div = document.createElement("div"); div.style.flex = v; div.style.background = col;
-    hover(div, `${n}：${v}件（${pct(v,c.total)}）`); $("entry").appendChild(div);
-    $("entryLegend").insertAdjacentHTML("beforeend", `<span><i style="background:${col}"></i>${n}　${v}件（${pct(v,c.total)}）</span>`);
-  });
+function presets(){
+  const p = {all:[D.data_from, D.data_to], wk1:["2026-11-16","2026-11-24"], wk2:["2026-11-25","2026-12-02"], last7:[addDays(D.data_to,-6), D.data_to]};
+  return p;
+}
+function applyLang(){
+  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "ja";
+  document.querySelectorAll("[data-i]").forEach(el => el.textContent = T(el.dataset.i));
+  document.querySelectorAll("#lang button").forEach(b => b.classList.toggle("on", b.dataset.l === lang));
+  document.title = T("title") + "｜Raccoon AI";
+}
 
-  // link bars
-  const max = Math.max(L.button.conversations, L.other.conversations);
-  const rows = (g, label) => `<div class="grp">${label}（${g.conversations}件）</div>` + [
-    ["閲覧中・指定の商品のみ", g.same_product, ""],
-    ["別の商品・複数商品を提案", g.other_product, "alt"],
-    ["リンクなし", g.no_link, "na2"]].map(([n,v,cls]) =>
-    `<div class="row" data-t="${label}｜${n}：${v}件（${pct(v,g.conversations)}）"><span>${n}</span><div class="track"><div class="fill ${cls}" style="width:${v/max*100}%;${cls==="na2"?"background:var(--neutral)":""}"></div></div><span class="val">${v}件</span></div>`).join("");
-  $("linkBars").innerHTML = rows(L.button, "ボタン起点") + rows(L.other, "それ以外");
-  $("linkBars").querySelectorAll(".row").forEach(r => hover(r, r.dataset.t));
+function render(){
+  if(!D) return;
+  const [f, t] = range, ex = $("exTest").checked, U = T("unit");
+  const inR = d => d >= f && d <= t;
+  // conversations: blocks fully inside range; flag partial overlap
+  const inside = D.blocks.filter(b => b.from >= f && b.to <= t);
+  const partial = D.blocks.filter(b => !(b.from >= f && b.to <= t) && b.to >= f && b.from <= t);
+  const sum = g => inside.reduce((a,b) => ({same:a.same+b[g].same, other:a.other+b[g].other, none:a.none+b[g].none}), {same:0,other:0,none:0});
+  const B = sum("button"), O = sum("other");
+  const nB = B.same+B.other+B.none, nO = O.same+O.other+O.none;
+  // tests: only those inside a counted block
+  const testIn = D.tests.filter(x => inside.some(b => x.date >= b.from && x.date <= b.to));
+  const tTotal = testIn.reduce((a,x) => a+x.count, 0);
+  // ボタン起点の動作確認件数：日別に button があればそれを、なければブロック単位の test_button を使う
+  const tBtn = inside.reduce((a,b) => a + (b.test_button ?? D.tests.filter(x => x.date >= b.from && x.date <= b.to).reduce((s,x)=>s+(x.button ?? 0),0)), 0);
+  const tKnownBtn = inside.every(b => b.test_button !== undefined || D.tests.filter(x => x.date >= b.from && x.date <= b.to).every(x => x.button !== undefined));
+  const total = nB + nO - (ex ? tTotal : 0);
+  const btn = nB - (ex && tKnownBtn ? tBtn : 0);
+  const withLink = B.same+B.other+O.same+O.other, alt = B.other+O.other;
+  const linkBase = nB + nO;
+
+  const pn = $("partial");
+  if(partial.length){ pn.style.display="block"; pn.textContent = fmt(T("partial"), {r: inside.length ? inside.map(b=>md(b.from)+"〜"+md(b.to)).join("・") : "—"}); }
+  else pn.style.display = "none";
+
+  const orders = D.orders.filter(o => inR(o.date));
+  const oSum = orders.reduce((a,o)=>a+o.amount_jpy,0), oU = orders.filter(o=>o.match==="utm").length;
+
+  $("k1").innerHTML = `${total}<small>${U}</small>`;
+  $("k1f").textContent = fmt(T("k1f"), {b: btn, p: pct(btn,total)}) + (ex && tTotal ? "・" + fmt(T("k1t"), {t:tTotal}) : "");
+  $("k2").innerHTML = `${withLink}<small>${U}</small>`; $("k2f").textContent = fmt(T("k2f"), {p: pct(withLink, linkBase)});
+  $("k3").innerHTML = `${alt}<small>${U}</small>`; $("k3f").textContent = fmt(T("k3f"), {p: pct(alt, linkBase)});
+  $("k4").innerHTML = `${orders.length}<small>${U}</small>`; $("k4f").textContent = fmt(T("k4f"), {a: yen(oSum), u: oU});
+
+  // daily chart (only daily blocks)
+  const days = []; for(let d=f; d<=t && days.length<62; d=addDays(d,1)) days.push(d);
+  const daily = D.blocks.filter(b => b.from === b.to);
+  const hasDaily = days.every(d => daily.some(b => b.from === d) || d > D.data_to);
+  const dEl = $("daily"), dl = $("dailyLegend");
+  if(!hasDaily || !daily.length){
+    dEl.innerHTML = `<div class="empty">${T("dailyWait")}</div>`; dl.innerHTML = "";
+  } else {
+    const vals = days.map(d => { const b = daily.find(x=>x.from===d); const tc = (D.tests.find(x=>x.date===d)||{}).count||0;
+      if(!b) return {d, b:0, o:0, t:tc};
+      const vb = b.button.same+b.button.other+b.button.none, vo = b.other.same+b.other.other+b.other.none;
+      return {d, b:vb, o:vo, t:tc}; });
+    const mx = Math.max(1, ...vals.map(v=>v.b+v.o));
+    dEl.innerHTML = `<div class="daily">${vals.map(v => `<div class="dcol" data-t="${md(v.d)}｜${T("btn")} ${v.b}${U}・${T("oth")} ${v.o}${U}${v.t?`・${T("tests")} ${v.t}${U}`:""}"><div class="n">${v.b+v.o||""}</div>${v.o?`<div class="s" style="height:${v.o/mx*140}px;background:var(--c-oth)"></div>`:""}${v.b?`<div class="s" style="height:${v.b/mx*140}px;background:var(--c-btn)"></div>`:""}</div>`).join("")}</div><div class="dlabels">${vals.map(v=>`<span>${md(v.d)}</span>`).join("")}</div>`;
+    dEl.querySelectorAll(".dcol").forEach(c => hover(c, c.dataset.t));
+    dl.innerHTML = `<span><i style="background:var(--c-btn)"></i>${T("btn")}</span><span><i style="background:var(--c-oth)"></i>${T("oth")}</span>`;
+  }
+
+  // entry bar
+  if(!inside.length){
+    $("entryWrap").innerHTML = `<div class="empty">${T("noData")}</div>`; $("linkBars").innerHTML = `<div class="empty">${T("noData")}</div>`;
+  } else {
+    $("entryWrap").innerHTML = `<div class="sbar" id="entry"></div><div class="legend" id="entryLegend"></div>`;
+    const oth = total - btn;
+    [[T("btn"), btn, "var(--c-btn)"], [T("oth"), oth, "var(--c-oth)"]].forEach(([n,v,col]) => {
+      const div = document.createElement("div"); div.style.flex = v; div.style.background = col;
+      hover(div, `${n}：${v}${U}（${pct(v,total)}）`); $("entry").appendChild(div);
+      $("entryLegend").insertAdjacentHTML("beforeend", `<span><i style="background:${col}"></i>${n}　${v}${U}（${pct(v,total)}）</span>`);
+    });
+    const mx = Math.max(nB, nO, 1);
+    const rows = (g, n, label) => `<div class="grp">${label}（${n}${U}）</div>` + [
+      ["same", g.same, "var(--c-btn)"], ["alt", g.other, "var(--c-alt)"], ["none", g.none, "var(--c-none)"]].map(([k,v,col]) =>
+      `<div class="row" data-t="${label}｜${T(k)}：${v}${U}（${pct(v,n)}）"><span>${T(k)}</span><div class="track"><div class="fill" style="width:${v/mx*100}%;background:${col}"></div></div><span class="val">${v}${U}</span></div>`).join("");
+    $("linkBars").innerHTML = rows(B, nB, T("btn")) + rows(O, nO, T("oth")) + (ex && tTotal ? `<div class="small" style="margin-top:10px">${fmt(T("testNote"),{t:tTotal})}</div>` : "");
+    $("linkBars").querySelectorAll(".row").forEach(r => hover(r, r.dataset.t));
+  }
 
   // orders
-  $("orders").innerHTML = o.items.map(i => {
-    const [m, cls] = MATCH[i.match] || [i.match, ""];
-    return `<tr><td>${esc(i.date.slice(5).replace("-","/"))}</td><td>${esc(i.product)}${i.note?`<div style="font-size:11.5px;color:var(--muted)">${esc(i.note)}</div>`:""}</td><td class="r">${yen(i.amount_jpy)}</td><td><span class="tag ${cls}">${m}</span></td></tr>`;
-  }).join("");
-  $("ordCount").textContent = `${o.count}件`; $("ordSum").textContent = yen(o.amount_jpy);
+  $("orders").innerHTML = orders.length ? orders.map(o => `<tr><td>${md(o.date)}</td><td>${esc(o.product)}${o.note?`<div class="small">${esc(T(o.note))}</div>`:""}</td><td class="r">${yen(o.amount_jpy)}</td><td><span class="tag ${o.match==="utm"?"utm":""}">${T(o.match==="utm"?"mUtm":"mTime")}</span></td></tr>`).join("")
+    : `<tr><td colspan="4" class="empty">${T("noOrders")}</td></tr>`;
+  $("ordCount").textContent = `${orders.length}${U}`; $("ordSum").textContent = yen(oSum);
+  $("ordSplit").innerHTML = `<span class="small" style="font-weight:400">${fmt(T("split"),{u:oU, o:orders.length-oU})}</span>`;
 
-  $("settings").innerHTML = d.settings.map(s => `<tr><td>${esc(s.name)}</td><td class="r"><span class="st ${s.status}">${STATUS[s.status]||esc(s.status)}</span></td></tr>`).join("");
-  $("na").innerHTML = d.unavailable.map(u => `<div class="na"><b>${esc(u.metric)}</b><span>${esc(u.reason)}</span></div>`).join("");
+  $("settings").innerHTML = D.settings.map(s => `<tr><td>${T(s.key)}</td><td class="r"><span class="st ${s.status}">${T(s.status==="partial"?"partialSt":s.status)}</span></td></tr>`).join("");
+  $("na").innerHTML = [["na1","na1r"],["na2","na2r"]].map(([a,b]) => `<div class="na"><b>${T(a)}</b><span>${T(b)}</span></div>`).join("");
 
-  const t = new Date(d.updated_at);
-  const stale = (Date.now() - t) / 36e5 > STALE_H;
+  const up = new Date(D.updated_at), stale = (Date.now()-up)/36e5 > STALE_H;
   $("dot").classList.toggle("stale", stale);
-  $("liveText").textContent = `データ更新：${t.toLocaleString("ja-JP",{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"})} JST${stale?"（更新待ち）":""}`;
-  $("foot").innerHTML = `出典：${esc(d.source)}。数値は Raccoon AI の会話ログ（本番環境）と、KICKS LAB. 様の Shopify 注文データ（連携アプリ経由）を照合したものです。ウェルカムメッセージのみの会話・本番公開前のテスト会話は除外しています。<br>本ページには注文番号・チケット番号・会話 ID・お客様の個人情報は含まれていません。　© Raccoon AI合同会社`;
-}
+  $("liveText").textContent = `${T("updated")}：${up.toLocaleString(T("lc"),{timeZone:"Asia/Tokyo",month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"})} JST${stale?T("pending"):""}`;
+  $("foot").innerHTML = T("foot");
 
+  // presets
+  const P = presets();
+  $("presets").innerHTML = Object.keys(P).map(k => `<button class="chip ${preset===k?"on":""}" data-p="${k}">${T(k)}</button>`).join(" ");
+  $("presets").querySelectorAll(".chip").forEach(c => c.onclick = () => { preset = c.dataset.p; setRange(...P[preset]); });
+}
+function setRange(f, t){
+  if(f > t) [f, t] = [t, f];
+  range = [f, t]; $("dFrom").value = f; $("dTo").value = t; render();
+}
 async function load(){
   try{
     const r = await fetch("data.json?t=" + Date.now(), {cache:"no-store"});
     if(!r.ok) throw new Error(r.status);
-    render(await r.json()); $("err").style.display = "none";
+    const first = !D; D = await r.json(); $("err").style.display = "none";
+    $("dFrom").min = $("dTo").min = D.data_from; $("dFrom").max = $("dTo").max = D.data_to;
+    if(first || preset === "all") { const P = presets(); setRange(...P[preset] || P.all); } else render();
   }catch(e){ $("err").style.display = "block"; }
 }
-load(); setInterval(load, REFRESH_MS);
+$("dFrom").onchange = $("dTo").onchange = () => { preset = null; setRange($("dFrom").value, $("dTo").value); };
+$("exTest").onchange = render;
+document.querySelectorAll("#lang button").forEach(b => b.onclick = () => { lang = b.dataset.l; localStorage.setItem("kl_lang", lang); applyLang(); render(); });
+applyLang(); load(); setInterval(load, REFRESH_MS);
 </script>
 </body>
 </html>
