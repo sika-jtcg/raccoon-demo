@@ -158,7 +158,7 @@ footer{color:var(--muted);font-size:11.5px;margin-top:22px;line-height:1.7}
 <script>
 const I18N = {
  ja: {
-  title:"KICKS LAB. 様　AI 接客ダッシュボード", autorefresh:"5分ごとに自動で最新データを読み込みます",
+  title:"KICKS LAB. 様　AI 接客ダッシュボード", autorefresh:"データは毎日 9:00・18:00（日本時間）に更新されます",
   updated:"データ更新", pending:"（更新待ち）", loadErr:"最新データを読み込めませんでした。前回のデータを表示しています。",
   period:"集計期間", all:"全期間", wk1:"公開〜11/24", wk2:"11/25〜12/2", last7:"直近7日",
   exTest:"御社・KICKS LAB. 様の動作確認の会話を除く",
@@ -191,7 +191,7 @@ const I18N = {
   unit:"件", lc:"ja-JP"
  },
  zh: {
-  title:"KICKS LAB. AI 客服成效儀表板", autorefresh:"每 5 分鐘自動讀取最新資料",
+  title:"KICKS LAB. AI 客服成效儀表板", autorefresh:"資料每天 9:00・18:00（日本時間）更新",
   updated:"資料更新", pending:"（待更新）", loadErr:"無法讀取最新資料，目前顯示上一次的資料。",
   period:"統計期間", all:"全部期間", wk1:"上線〜11/24", wk2:"11/25〜12/2", last7:"最近 7 天",
   exTest:"排除 Eclect・KICKS LAB. 的測試會話",
@@ -224,7 +224,7 @@ const I18N = {
   unit:"件", lc:"zh-TW"
  }
 };
-const REFRESH_MS = 5*60*1000, STALE_H = 36;
+const REFRESH_MS = 60*60*1000, STALE_H = 36;
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt = (s, o) => s.replace(/\{(\w)\}/g, (_, k) => o[k]);

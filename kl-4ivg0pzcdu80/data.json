@@ -1,9 +1,9 @@
 {
   "schema": 2,
   "client": "KICKS LAB.",
-  "updated_at": "2026-11-27T15:30:00+09:00",
+  "updated_at": "2026-11-29T01:40:00+09:00",
   "data_from": "2026-11-16",
-  "data_to": "2026-11-24",
+  "data_to": "2026-11-26",
   "blocks": [
     {
       "from": "2026-11-16",
@@ -19,6 +19,34 @@
         "none": 19
       },
       "test_button": 10
+    },
+    {
+      "from": "2026-11-25",
+      "to": "2026-11-25",
+      "button": {
+        "same": 24,
+        "other": 0,
+        "none": 0
+      },
+      "other": {
+        "same": 1,
+        "other": 1,
+        "none": 2
+      }
+    },
+    {
+      "from": "2026-11-26",
+      "to": "2026-11-26",
+      "button": {
+        "same": 39,
+        "other": 1,
+        "none": 0
+      },
+      "other": {
+        "same": 1,
+        "other": 1,
+        "none": 0
+      }
     }
   ],
   "tests": [
