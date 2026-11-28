@@ -268,8 +268,12 @@ function render(){
   const testIn = D.tests.filter(x => inside.some(b => x.date >= b.from && x.date <= b.to));
   const tTotal = testIn.reduce((a,x) => a+x.count, 0);
   // ボタン起点の動作確認件数：日別に button があればそれを、なければブロック単位の test_button を使う
-  const tBtn = inside.reduce((a,b) => a + (b.test_button ?? D.tests.filter(x => x.date >= b.from && x.date <= b.to).reduce((s,x)=>s+(x.button ?? 0),0)), 0);
-  const tKnownBtn = inside.every(b => b.test_button !== undefined || D.tests.filter(x => x.date >= b.from && x.date <= b.to).every(x => x.button !== undefined));
+  // 動作確認のボタン起点件数は日別に不明なため、期間単位（test_groups）で持つ。範囲に丸ごと入るときだけ差し引く
+  const TG = D.test_groups || [];
+  const tgIn = TG.filter(g => g.from >= f && g.to <= t);
+  const inTG = d => tgIn.some(g => d >= g.from && d <= g.to);
+  const tBtn = tgIn.reduce((a,g)=>a+g.button,0) + testIn.filter(x => !inTG(x.date)).reduce((s,x)=>s+(x.button ?? 0),0);
+  const tKnownBtn = testIn.every(x => inTG(x.date) || x.button !== undefined);
   const total = nB + nO - (ex ? tTotal : 0);
   const btn = nB - (ex && tKnownBtn ? tBtn : 0);
   const withLink = B.same+B.other+O.same+O.other, alt = B.other+O.other;

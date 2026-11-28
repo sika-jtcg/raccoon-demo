@@ -1,24 +1,135 @@
 {
   "schema": 2,
   "client": "KICKS LAB.",
-  "updated_at": "2026-11-29T01:40:00+09:00",
+  "updated_at": "2026-11-29T02:00:00+09:00",
   "data_from": "2026-11-16",
   "data_to": "2026-11-26",
   "blocks": [
     {
       "from": "2026-11-16",
-      "to": "2026-11-24",
+      "to": "2026-11-16",
       "button": {
-        "same": 235,
-        "other": 3,
-        "none": 8
+        "same": 16,
+        "other": 1,
+        "none": 1
       },
       "other": {
-        "same": 3,
-        "other": 6,
-        "none": 19
+        "same": 0,
+        "other": 1,
+        "none": 1
+      }
+    },
+    {
+      "from": "2026-11-17",
+      "to": "2026-11-17",
+      "button": {
+        "same": 24,
+        "other": 0,
+        "none": 0
       },
-      "test_button": 10
+      "other": {
+        "same": 0,
+        "other": 2,
+        "none": 2
+      }
+    },
+    {
+      "from": "2026-11-18",
+      "to": "2026-11-18",
+      "button": {
+        "same": 32,
+        "other": 2,
+        "none": 1
+      },
+      "other": {
+        "same": 0,
+        "other": 0,
+        "none": 1
+      }
+    },
+    {
+      "from": "2026-11-19",
+      "to": "2026-11-19",
+      "button": {
+        "same": 35,
+        "other": 0,
+        "none": 0
+      },
+      "other": {
+        "same": 0,
+        "other": 0,
+        "none": 6
+      }
+    },
+    {
+      "from": "2026-11-20",
+      "to": "2026-11-20",
+      "button": {
+        "same": 18,
+        "other": 0,
+        "none": 1
+      },
+      "other": {
+        "same": 1,
+        "other": 0,
+        "none": 1
+      }
+    },
+    {
+      "from": "2026-11-21",
+      "to": "2026-11-21",
+      "button": {
+        "same": 25,
+        "other": 1,
+        "none": 0
+      },
+      "other": {
+        "same": 0,
+        "other": 1,
+        "none": 2
+      }
+    },
+    {
+      "from": "2026-11-22",
+      "to": "2026-11-22",
+      "button": {
+        "same": 21,
+        "other": 0,
+        "none": 1
+      },
+      "other": {
+        "same": 0,
+        "other": 0,
+        "none": 1
+      }
+    },
+    {
+      "from": "2026-11-23",
+      "to": "2026-11-23",
+      "button": {
+        "same": 28,
+        "other": 0,
+        "none": 2
+      },
+      "other": {
+        "same": 0,
+        "other": 0,
+        "none": 1
+      }
+    },
+    {
+      "from": "2026-11-24",
+      "to": "2026-11-24",
+      "button": {
+        "same": 34,
+        "other": 1,
+        "none": 2
+      },
+      "other": {
+        "same": 2,
+        "other": 2,
+        "none": 4
+      }
     },
     {
       "from": "2026-11-25",
@@ -110,6 +221,13 @@
     {
       "key": "fitting_data",
       "status": "partial"
+    }
+  ],
+  "test_groups": [
+    {
+      "from": "2026-11-16",
+      "to": "2026-11-24",
+      "button": 10
     }
   ]
 }
